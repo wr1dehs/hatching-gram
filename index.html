@@ -494,7 +494,7 @@ a{color:var(--acc);}
     <div class="prof-tab" id="ptab-ch"   onclick="switchProfTab('ch')">📢 Каналы</div>
   </div>
   <!-- body -->
-  <div style="padding:16px 20px 10px;max-height:60vh;overflow-y:auto;">
+  <div style="padding:16px 20px 10px;">
 
     <!-- MAIN -->
     <div id="ptab-main-body">
@@ -1835,23 +1835,35 @@ function onAvPngSelect(inp){
 }
 async function saveAvPng(){
   if(!_avPngFile){toast('❌ Сначала выбери картинку');return;}
-  if(!storage){toast('❌ Firebase Storage не настроен');return;}
   const st=document.getElementById('pngUploadStatus');
-  if(st){st.textContent='⏳ Загружаю...';st.style.display='block';}
+  if(st){st.textContent='⏳ Сжимаю...';st.style.display='block';}
   try{
-    const ext=_avPngFile.name.split('.').pop()||'jpg';
-    const ref=storage.ref('avatars/'+ME.uid+'.'+ext);
-    await ref.put(_avPngFile);
-    const url=await ref.getDownloadURL();
-    ME.avUrl=url;ME.avEmoji=null;
-    await db.ref('users/'+ME.uid).update({avUrl:url,avEmoji:null});
-    await db.ref('presence/'+ME.uid).update({avUrl:url,avEmoji:null});
-    renderSbUser();
-    // update profAv preview
-    const pa=document.getElementById('profAv');
-    if(pa){pa.style.overflow='hidden';pa.innerHTML=`<img src="${url}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}
-    if(st){st.textContent='✅ Готово!';setTimeout(()=>{st.style.display='none';switchProfTab('main');},800);}
-    toast('✅ Аватар обновлён');_avPngFile=null;
+    // Resize & compress to base64 via canvas (max 128x128, jpeg quality 0.7)
+    const img=new Image();
+    const reader=new FileReader();
+    reader.onload=async e=>{
+      img.onload=async()=>{
+        const MAX=128;
+        const canvas=document.createElement('canvas');
+        const scale=Math.min(MAX/img.width,MAX/img.height,1);
+        canvas.width=Math.round(img.width*scale);
+        canvas.height=Math.round(img.height*scale);
+        canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+        const b64=canvas.toDataURL('image/jpeg',0.72);
+        // Save to Firebase Database (no Storage, no CORS)
+        await db.ref('users/'+ME.uid+'/avUrl').set(b64);
+        await db.ref('presence/'+ME.uid+'/avUrl').set(b64);
+        ME.avUrl=b64;ME.avEmoji=null;
+        await db.ref('users/'+ME.uid+'/avEmoji').set(null);
+        renderSbUser();
+        const pa=document.getElementById('profAv');
+        if(pa){pa.style.overflow='hidden';pa.innerHTML=`<img src="${b64}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}
+        if(st){st.textContent='✅ Готово!';setTimeout(()=>{st.style.display='none';switchProfTab('main');},600);}
+        toast('✅ Аватар обновлён');_avPngFile=null;
+      };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(_avPngFile);
   }catch(e){if(st)st.textContent='❌ '+e.message;console.error(e);}
 }
 
