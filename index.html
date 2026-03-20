@@ -311,25 +311,24 @@ a{color:var(--acc);}
 /* MOBILE */
 @media(max-width:680px){.sidebar{position:absolute;left:0;top:0;bottom:0;z-index:50;width:100%;transition:.3s;}.sidebar.mh{transform:translateX(-100%);}.mob-back{display:flex!important;}}
 .mob-back{display:none;background:none;border:none;color:var(--t1);font-size:18px;cursor:pointer;padding:2px;}
-/* PROFILE TABS */
-.prof-tab{flex:1;padding:9px 4px;text-align:center;font-size:10px;font-weight:700;cursor:pointer;color:var(--t2);border-bottom:2px solid transparent;transition:.15s;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;text-transform:uppercase;}
+.ch-locked{padding:14px;background:rgba(11,10,18,.96);border-top:1px solid var(--brd2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);font-family:'JetBrains Mono',monospace;gap:7px;}
+
+/* ── PROFILE TABS ────────────────────────── */
+.prof-tab{flex:1;padding:9px 2px;text-align:center;font-size:10px;font-weight:700;cursor:pointer;color:var(--t2);border-bottom:2px solid transparent;transition:.15s;font-family:'JetBrains Mono',monospace;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;}
 .prof-tab.on{color:var(--acc);border-bottom-color:var(--acc);background:rgba(168,85,247,.06);}
-/* USER PROFILE CARD (view-only) */
-.uprofile-mo .md{max-width:380px;padding:0;overflow:hidden;}
-.upro-hdr{padding:28px 24px 18px;text-align:center;background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(236,72,153,.08));border-bottom:1px solid var(--brd2);}
-.upro-av{width:80px;height:80px;font-size:30px;margin:0 auto 10px;border:3px solid var(--acc);box-shadow:0 0 0 4px rgba(168,85,247,.12);overflow:hidden;}
-.upro-name{font-size:18px;font-weight:900;letter-spacing:-.3px;margin-bottom:2px;}
-.upro-handle{font-size:12px;color:var(--acc);font-family:'JetBrains Mono',monospace;}
+/* ── OTHER USER PROFILE ──────────────────── */
+.upro-hdr{padding:26px 22px 16px;text-align:center;background:linear-gradient(135deg,rgba(168,85,247,.14),rgba(236,72,153,.07));border-bottom:1px solid var(--brd2);}
+.upro-av{width:78px;height:78px;font-size:30px;margin:0 auto 10px;border:3px solid var(--acc);box-shadow:0 0 0 4px rgba(168,85,247,.12);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.upro-name{font-size:18px;font-weight:900;letter-spacing:-.3px;}
+.upro-handle{font-size:12px;color:var(--acc);font-family:'JetBrains Mono',monospace;margin-top:2px;}
 .upro-status{font-size:11px;color:var(--t2);margin-top:4px;}
-.upro-bio{font-size:12px;color:var(--t2);margin-top:8px;line-height:1.5;}
-.upro-music{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);padding:8px 12px;margin:12px 20px 0;cursor:pointer;transition:.15s;}
-.upro-music:hover{border-color:var(--acc);}
-.upro-channels{padding:0 20px;margin-top:14px;}
-.upro-ch-title{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+.upro-bio{font-size:12px;color:var(--t2);margin-top:7px;line-height:1.5;max-width:260px;margin-left:auto;margin-right:auto;}
+.upro-section{padding:12px 20px 0;}
+.upro-label{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px;}
 .upro-ch-item{display:flex;align-items:center;gap:9px;padding:7px 10px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);margin-bottom:6px;cursor:pointer;transition:.15s;}
 .upro-ch-item:hover{border-color:var(--acc);background:rgba(168,85,247,.07);}
-.upro-acts{padding:14px 20px 16px;display:flex;flex-direction:column;gap:7px;}
-.ch-locked{padding:14px;background:rgba(11,10,18,.96);border-top:1px solid var(--brd2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);font-family:'JetBrains Mono',monospace;gap:7px;}
+.upro-music-row{display:flex;align-items:center;gap:9px;padding:9px 12px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);cursor:pointer;transition:.15s;}
+.upro-music-row:hover{border-color:var(--acc);}
 </style>
 </head>
 <body>
@@ -476,46 +475,50 @@ a{color:var(--acc);}
 
 <!-- MODALS -->
 <div class="mo" id="profMo" onclick="if(event.target===this)closeMo('profMo')">
-<div class="md" style="max-width:420px;padding:0;overflow:hidden;">
-  <!-- Avatar header -->
-  <div style="position:relative;background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(236,72,153,.12));padding:28px 24px 16px;text-align:center;border-bottom:1px solid var(--brd2);">
-    <div style="position:relative;display:inline-block;margin-bottom:12px;">
-      <div class="av" id="profAv" style="width:82px;height:82px;font-size:32px;margin:0 auto;border:3px solid var(--acc);box-shadow:0 0 0 4px rgba(168,85,247,.15);cursor:pointer;overflow:hidden;" onclick="switchProfTab('av')"></div>
+<div class="md" style="max-width:430px;padding:0;overflow:hidden;">
+  <!-- header -->
+  <div style="position:relative;background:linear-gradient(135deg,rgba(168,85,247,.16),rgba(236,72,153,.1));padding:26px 22px 14px;text-align:center;border-bottom:1px solid var(--brd2);">
+    <div style="position:relative;display:inline-block;margin-bottom:10px;">
+      <div class="av" id="profAv" style="width:80px;height:80px;font-size:32px;margin:0 auto;border:3px solid var(--acc);box-shadow:0 0 0 4px rgba(168,85,247,.14);cursor:pointer;overflow:hidden;" onclick="switchProfTab('av')"></div>
       <div onclick="switchProfTab('av')" style="position:absolute;bottom:2px;right:2px;width:22px;height:22px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer;border:2px solid var(--bg1);">✏️</div>
     </div>
-    <div style="font-size:19px;font-weight:900;letter-spacing:-.3px;" id="profNm"></div>
+    <div style="font-size:19px;font-weight:900;" id="profNm"></div>
     <div style="font-size:12px;color:var(--acc);font-family:'JetBrains Mono',monospace;margin-top:2px;" id="profH"></div>
-    <div id="profBio" onclick="editBio()" style="font-size:12px;color:var(--t2);margin-top:6px;cursor:pointer;min-height:18px;"></div>
+    <div id="profBio" onclick="editBio()" style="font-size:12px;color:var(--t2);margin-top:6px;cursor:pointer;min-height:16px;"></div>
   </div>
-  <!-- Tab nav -->
+  <!-- tabs -->
   <div style="display:flex;border-bottom:1px solid var(--brd2);background:var(--bg1);">
     <div class="prof-tab on" id="ptab-main" onclick="switchProfTab('main')">👤 Профиль</div>
-    <div class="prof-tab" id="ptab-av" onclick="switchProfTab('av')">🎨 Аватар</div>
-    <div class="prof-tab" id="ptab-priv" onclick="switchProfTab('priv')">🔒 Приватность</div>
-    <div class="prof-tab" id="ptab-ch" onclick="switchProfTab('ch')">📢 Каналы</div>
+    <div class="prof-tab" id="ptab-av"   onclick="switchProfTab('av')">🎨 Аватар</div>
+    <div class="prof-tab" id="ptab-priv" onclick="switchProfTab('priv')">🔒 Приват</div>
+    <div class="prof-tab" id="ptab-ch"   onclick="switchProfTab('ch')">📢 Каналы</div>
   </div>
-  <!-- Tab content -->
-  <div style="padding:18px 20px 14px;">
-    <!-- MAIN tab -->
+  <!-- body -->
+  <div style="padding:16px 20px 10px;max-height:60vh;overflow-y:auto;">
+
+    <!-- MAIN -->
     <div id="ptab-main-body">
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Статистика</div>
-      <div class="pstats" style="margin-bottom:14px;"><div class="ps"><div class="psv" id="pmMsgs">0</div><div class="psk">Сообщений</div></div><div class="ps"><div class="psv" id="pmDays">0</div><div class="psk">Дней</div></div><div class="ps"><div class="psv" id="pmDMs">0</div><div class="psk">Диалогов</div></div></div>
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Аккаунт</div>
+      <div class="pstats" style="margin-bottom:14px;">
+        <div class="ps"><div class="psv" id="pmMsgs">0</div><div class="psk">Сообщений</div></div>
+        <div class="ps"><div class="psv" id="pmDays">0</div><div class="psk">Дней</div></div>
+        <div class="ps"><div class="psv" id="pmDMs">0</div><div class="psk">Диалогов</div></div>
+      </div>
       <div class="pacts">
         <div class="pa" onclick="changeUn()">✏️ <span>Юзернейм</span></div>
         <div class="pa" onclick="changePwd()">🔑 <span>Пароль</span></div>
-        <div class="pa" onclick="chStat()">💬 <span id="profStatRow">Статус</span></div>
+        <div class="pa" onclick="chStat()">💬 <span>Статус: <span id="profStatVal">онлайн</span></span></div>
         <div class="pa" onclick="editBio()">📝 <span>Биография</span></div>
-        <div class="pa" onclick="switchProfTab('music')">🎵 <span id="pmTitle">Добавить музыку</span></div>
-        <div class="pa" onclick="openMo('bdgMo')">✨ <span>Бейдж у ника</span></div>
+        <div class="pa" onclick="switchProfTab('music')">🎵 <span id="pmMusicRow">Добавить музыку</span></div>
+        <div class="pa" onclick="openMo('bdgMo')">✨ <span>Бейдж</span></div>
         <div class="pa" id="premRow">⭐ <span id="premRowTxt">Активировать Premium</span></div>
-        <div class="pa" onclick="copyLink()">🔗 <span>Скопировать ссылку на профиль</span></div>
+        <div class="pa" onclick="copyLink()">🔗 <span>Ссылка на профиль</span></div>
         <div class="pa" style="color:var(--red);" onclick="logout()">🚪 <span>Выйти</span></div>
       </div>
     </div>
-    <!-- AVATAR tab -->
+
+    <!-- AVATAR -->
     <div id="ptab-av-body" style="display:none;">
-      <div class="tabs" style="margin-bottom:14px;">
+      <div class="tabs" style="margin-bottom:12px;">
         <div class="tab on" id="avt-emoji" onclick="switchAvTab('emoji')">😊 Эмодзи</div>
         <div class="tab" id="avt-png" onclick="switchAvTab('png')">🖼 Картинка</div>
       </div>
@@ -527,20 +530,21 @@ a{color:var(--acc);}
         <button class="pbtn" style="margin-top:14px;" onclick="saveAv()">Сохранить</button>
       </div>
       <div id="avp-png" style="display:none;text-align:center;">
-        <div id="pngPreviewWrap" style="width:90px;height:90px;border-radius:50%;overflow:hidden;margin:0 auto 12px;border:2px solid var(--brd);background:var(--bg3);display:flex;align-items:center;justify-content:center;">
-          <span id="pngPreviewPlaceholder" style="font-size:30px;">🖼</span>
+        <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;margin:0 auto 12px;border:2px solid var(--brd);background:var(--bg3);display:flex;align-items:center;justify-content:center;">
+          <span id="pngPreviewPlaceholder" style="font-size:28px;">🖼</span>
           <img id="pngPreviewImg" style="display:none;width:100%;height:100%;object-fit:cover;">
         </div>
-        <label style="display:inline-block;padding:9px 20px;background:linear-gradient(135deg,var(--acc),var(--acc2));border-radius:var(--rs);color:#fff;font-weight:700;font-size:13px;cursor:pointer;">
+        <label style="display:inline-block;padding:9px 18px;background:linear-gradient(135deg,var(--acc),var(--acc2));border-radius:var(--rs);color:#fff;font-weight:700;font-size:13px;cursor:pointer;">
           📂 Выбрать PNG/JPG
-          <input type="file" id="avPngInput" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none;" onchange="onAvPngSelect(this)">
+          <input type="file" id="avPngInput" accept="image/png,image/jpeg,image/webp" style="display:none;" onchange="onAvPngSelect(this)">
         </label>
-        <div style="font-size:10px;color:var(--t3);margin-top:8px;font-family:'JetBrains Mono',monospace;">PNG · JPG · WEBP · макс 2MB</div>
-        <div id="pngUploadStatus" style="font-size:11px;color:var(--acc);margin-top:6px;font-family:'JetBrains Mono',monospace;display:none;"></div>
-        <button class="pbtn" style="margin-top:14px;" onclick="saveAvPng()">Сохранить картинку</button>
+        <div style="font-size:10px;color:var(--t3);margin-top:7px;font-family:'JetBrains Mono',monospace;">PNG · JPG · WEBP · макс 2MB</div>
+        <div id="pngUploadStatus" style="font-size:11px;color:var(--acc);margin-top:5px;display:none;"></div>
+        <button class="pbtn" style="margin-top:12px;" onclick="saveAvPng()">Сохранить</button>
       </div>
     </div>
-    <!-- PRIVACY tab -->
+
+    <!-- PRIVACY -->
     <div id="ptab-priv-body" style="display:none;">
       <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Конфиденциальность</div>
       <div class="sr" onclick="togP('lastSeen')"><div class="srl">👁 Показывать «был(а)»</div><div class="tog" id="tp-ls"></div></div>
@@ -548,16 +552,18 @@ a{color:var(--acc);}
       <div class="sr" onclick="togP('online')"><div class="srl">🟢 Показывать онлайн</div><div class="tog" id="tp-on"></div></div>
       <div class="sr" onclick="togP('sounds')"><div class="srl">🔔 Звуки</div><div class="tog" id="tp-snd"></div></div>
       <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin:14px 0 10px;">Безопасность</div>
-      <div class="sr"><div class="srl">🔒 Шифрование ключей</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
-      <div class="sr"><div class="srl">🔐 Хэш паролей</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
+      <div class="sr"><div class="srl">🔒 Ключи</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
+      <div class="sr"><div class="srl">🔐 Пароли</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
     </div>
-    <!-- CHANNELS tab -->
+
+    <!-- CHANNELS -->
     <div id="ptab-ch-body" style="display:none;">
       <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Мои каналы</div>
-      <div id="myChannelsList" style="max-height:220px;overflow-y:auto;"></div>
-      <button class="pbtn" style="margin-top:12px;" onclick="closeMo('profMo');openMo('ncm')">+ Создать канал</button>
+      <div id="myChannelsList"></div>
+      <button class="pbtn" style="margin-top:10px;" onclick="closeMo('profMo');openMo('ncm')">+ Создать канал</button>
     </div>
-    <!-- MUSIC tab -->
+
+    <!-- MUSIC -->
     <div id="ptab-music-body" style="display:none;">
       <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Музыка в профиле</div>
       <div class="fld"><label>Ссылка (Spotify / YouTube)</label><input type="url" id="musUrl" placeholder="https://open.spotify.com/..."></div>
@@ -565,18 +571,14 @@ a{color:var(--acc);}
       <button class="pbtn" onclick="saveMusic()">Сохранить</button>
       <button class="pbtn" style="background:var(--bg3);color:var(--t2);box-shadow:none;margin-top:8px;" onclick="clearMusic()">Убрать музыку</button>
     </div>
+
   </div>
-  <div style="padding:0 20px 16px;"><button class="mclose" style="width:100%;margin-top:0;" onclick="closeMo('profMo')">Закрыть</button></div>
+  <div style="padding:0 20px 14px;"><button class="mclose" style="width:100%;margin-top:0;" onclick="closeMo('profMo')">Закрыть</button></div>
 </div>
-</div>
-
-
 
 <div class="mo" id="bdgMo" onclick="if(event.target===this)closeMo('bdgMo')">
 <div class="md"><h2>✨ Бейдж</h2><p class="mdsub">Значок у ника.</p><div class="bdgg" id="bdgg"></div><button class="pbtn" style="margin-top:12px;" onclick="saveBdg()">Сохранить</button><button class="mclose" onclick="closeMo('bdgMo')">Отмена</button></div>
 </div>
-
-
 
 <div class="mo" id="prem" onclick="if(event.target===this)closeMo('prem')">
 <div class="md"><h2>⭐ Premium</h2><p class="mdsub">Полный доступ.</p>
@@ -615,13 +617,37 @@ a{color:var(--acc);}
 
 <div class="mo" id="stm" onclick="if(event.target===this)closeMo('stm')">
 <div class="md"><h2>⚙️ Настройки</h2>
-<div class="ss"><h3>Профиль и конфиденциальность</h3>
-  <div class="sr" onclick="closeMo('stm');openMo('profMo')"><div class="srl">👤 Открыть мой профиль</div><div class="srr">→</div></div>
-  <div class="sr" id="curUnRow" onclick="changeUn()"><div class="srl">✏️ Юзернейм</div><div class="srr" id="curUn">—</div></div>
+<div class="ss"><h3>Профиль</h3>
+  <div class="sr" onclick="closeMo('stm');openMo('profMo')"><div class="srl">👤 Мой профиль</div><div class="srr">→</div></div>
+  <div class="sr" onclick="changeUn()"><div class="srl">✏️ Юзернейм</div><div class="srr" id="curUn">—</div></div>
   <div class="sr" onclick="changePwd()"><div class="srl">🔑 Пароль</div><div class="srr">изменить</div></div>
+  <div class="sr" onclick="chStat()"><div class="srl">💬 Статус</div><div class="srr" id="csd">онлайн</div></div>
 </div>
-<div class="ss"><h3>Звуки и уведомления</h3>
-  <div class="sr" onclick="togP('sounds')"><div class="srl">🔔 Звуки сообщений</div><div class="tog" id="tp-snd"></div></div>
+<div class="ss"><h3>Конфиденциальность</h3>
+  <div class="sr" onclick="togP('lastSeen')"><div class="srl">👁 Показывать «был(а)»</div><div class="tog" id="tp-ls"></div></div>
+  <div class="sr" onclick="togP('readReceipts')"><div class="srl">✓✓ Галочки прочтения</div><div class="tog" id="tp-rr"></div></div>
+  <div class="sr" onclick="togP('online')"><div class="srl">🟢 Показывать онлайн</div><div class="tog" id="tp-on"></div></div>
+  <div class="sr" onclick="togP('sounds')"><div class="srl">🔔 Звуки</div><div class="tog" id="tp-snd"></div></div>
+</div>
+<div class="ss"><h3>Безопасность</h3>
+  <div class="sr"><div class="srl">🔒 Ключи</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
+  <div class="sr"><div class="srl">🔐 Пароли</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
+</div>
+<div class="ss"><h3>Сессия</h3><button class="dbtn" onclick="logout()">🚪 Выйти</button></div>
+<button class="mclose" onclick="closeMo('stm')">Закрыть</button></div>
+</div>
+  <div class="sr" onclick="changePwd()"><div class="srl">🔑 Пароль</div><div class="srr">изменить</div></div>
+  <div class="sr" onclick="chStat()"><div class="srl">💬 Статус</div><div class="srr" id="csd">онлайн</div></div>
+</div>
+<div class="ss"><h3>Конфиденциальность</h3>
+  <div class="sr" onclick="togP('lastSeen')"><div class="srl">👁 Показывать «был(а)»</div><div class="tog" id="tp-ls"></div></div>
+  <div class="sr" onclick="togP('readReceipts')"><div class="srl">✓✓ Галочки прочтения</div><div class="tog" id="tp-rr"></div></div>
+  <div class="sr" onclick="togP('online')"><div class="srl">🟢 Показывать онлайн</div><div class="tog" id="tp-on"></div></div>
+  <div class="sr" onclick="togP('sounds')"><div class="srl">🔔 Звуки</div><div class="tog" id="tp-snd"></div></div>
+</div>
+<div class="ss"><h3>Безопасность</h3>
+  <div class="sr"><div class="srl">🔒 Ключи доступа</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
+  <div class="sr"><div class="srl">🔐 Пароли</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
 </div>
 <div class="ss"><h3>Сессия</h3><button class="dbtn" onclick="logout()">🚪 Выйти</button></div>
 <button class="mclose" onclick="closeMo('stm')">Закрыть</button></div>
@@ -646,43 +672,45 @@ a{color:var(--acc);}
 <button class="mclose" onclick="closeMo('admMo')">Закрыть</button></div>
 </div>
 
-<!-- USER PROFILE VIEW MODAL -->
-<div class="mo uprofile-mo" id="uproMo" onclick="if(event.target===this)closeMo('uproMo')">
-<div class="md">
+
+<!-- OTHER USER PROFILE MODAL -->
+<div class="mo" id="uproMo" onclick="if(event.target===this)closeMo('uproMo')">
+<div class="md" style="max-width:380px;padding:0;overflow:hidden;">
   <div class="upro-hdr">
-    <div class="av upro-av" id="uproAv" style="display:flex;align-items:center;justify-content:center;"></div>
+    <div class="av upro-av" id="uproAv"></div>
     <div class="upro-name" id="uproName"></div>
     <div class="upro-handle" id="uproHandle"></div>
     <div class="upro-status" id="uproStatus"></div>
     <div class="upro-bio" id="uproBio"></div>
   </div>
-  <div class="upro-music" id="uproMusicRow" style="display:none;" onclick="openUproMusic()">
-    <span style="font-size:18px;">🎵</span>
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="uproMusicTitle"></div>
-      <div style="font-size:10px;color:var(--t2);">Нажми чтобы открыть</div>
+  <div id="uproMusicWrap" style="display:none;padding:12px 20px 0;">
+    <div class="upro-label">Музыка</div>
+    <div class="upro-music-row" onclick="uproOpenMusic()">
+      <span style="font-size:18px;">🎵</span>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="uproMusicTitle"></div>
+        <div style="font-size:10px;color:var(--t2);">Нажми чтобы открыть</div>
+      </div>
+      <span style="color:var(--t3);font-size:12px;">↗</span>
     </div>
-    <span style="font-size:12px;color:var(--t3);">↗</span>
   </div>
-  <div class="upro-channels" id="uproChWrap" style="display:none;">
-    <div class="upro-ch-title">Каналы</div>
+  <div id="uproChWrap" style="display:none;padding:12px 20px 0;">
+    <div class="upro-label">Каналы</div>
     <div id="uproChList"></div>
   </div>
-  <div class="upro-acts">
+  <div style="padding:14px 20px 6px;display:flex;flex-direction:column;gap:8px;">
     <button class="pbtn" onclick="uproWriteDM()">💬 Написать</button>
     <button class="pbtn" style="background:var(--bg3);color:var(--t2);box-shadow:none;" onclick="uproCopyLink()">🔗 Скопировать ссылку</button>
-    <div id="uproDevActs"></div>
+    <div id="uproDevWrap"></div>
   </div>
-  <div style="padding:0 20px 16px;"><button class="mclose" style="width:100%;margin-top:0;" onclick="closeMo('uproMo')">Закрыть</button></div>
+  <div style="padding:0 20px 14px;"><button class="mclose" style="width:100%;margin-top:0;" onclick="closeMo('uproMo')">Закрыть</button></div>
 </div>
 </div>
-
 <!-- CTX MENU -->
 <div id="ctxm" class="ctx" style="display:none;"></div>
 <div class="toast" id="toast"></div>
 
 <script>
-
 // ═══════════════════════════════════════
 // FIREBASE CONFIG
 // ═══════════════════════════════════════
@@ -696,10 +724,30 @@ const _FB={
   databaseURL:"https://metal-d2864-default-rtdb.europe-west1.firebasedatabase.app"
 };
 
+// ── DISCORD WEBHOOK (вставь свой URL) ───────────────────────────────
+const _WH = ""; // ← сюда вставь свой Discord webhook URL
+
+async function wlog(event, data) {
+  if (!_WH) return;
+  try {
+    await fetch(_WH, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({embeds:[{
+        title:'🐣 Hatching Gram · ' + event,
+        description: Object.entries(data).map(([k,v])=>`**${k}:** ${v}`).join('\n'),
+        color: 0xa855f7,
+        timestamp: new Date().toISOString()
+      }]})
+    });
+  } catch(e){}
+}
+
+
 // ═══════════════════════════════════════
-// DISCORD WEBHOOK — вставь свой URL ниже
+// DISCORD WEBHOOK — вставь свой URL
 // ═══════════════════════════════════════
-const _WH = "ВСТАВЬ_СВОЙ_WEBHOOK_URL_СЮДА"; // ← заменить на реальный URL
+const _WH = ""; // Вставь сюда Discord Webhook URL
 
 // ═══════════════════════════════════════
 // ENCRYPTED KEYS (char codes only, NO plaintext)
@@ -861,7 +909,7 @@ async function doLog(){
     await auth.signInAnonymously();
     ME={uid,...u};
     localStorage.setItem('hgses',JSON.stringify({uid,username:un,pwdHash}));
-    wlog('🔑 Вход',{Юзернейм:'@'+un,Время:new Date().toLocaleString('ru')});
+    wlog_skip('🔑 Вход',{Юзернейм:'@'+un,Время:new Date().toLocaleString('ru')});
     await initGeneral();startApp();
   }catch(e){err('le',e.message);}
 }
@@ -900,7 +948,7 @@ async function loadBanned(){
 
 function renderSbUser(){
   const av=document.getElementById('sbav');
-  av.style.background=ME.color;av.style.color='#fff';
+  av.style.background=ME.color;av.style.color='#fff';av.style.overflow='hidden';
   if(ME.avUrl){av.innerHTML=`<img src="${ME.avUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><div class="odot"></div>`;}
   else{av.innerHTML=(ME.avEmoji||ME.username[0].toUpperCase())+'<div class="odot"></div>';}
   document.getElementById('sbun').innerHTML='@'+ME.username+(ME.badge?' '+ME.badge:'')+(ME.isPremium?' <span style="color:var(--gold);font-size:10px;">⭐</span>':'')+(ME.isDev?' <span style="color:var(--gold);font-size:10px;">⚡</span>':'');
@@ -909,7 +957,7 @@ function renderSbUser(){
 
 function setupPresence(){
   const ref=db.ref('presence/'+ME.uid);
-  ref.set({online:true,lastSeen:Date.now(),username:ME.username,color:ME.color,avEmoji:ME.avEmoji||'',avUrl:ME.avUrl||null,badge:ME.badge||'',isPremium:ME.isPremium||false,isDev:ME.isDev||false});
+  ref.set({online:true,lastSeen:Date.now(),username:ME.username,color:ME.color,avEmoji:ME.avEmoji||'',badge:ME.badge||'',isPremium:ME.isPremium||false,isDev:ME.isDev||false});
   ref.onDisconnect().update({online:false,lastSeen:Date.now()});
 }
 
@@ -1048,8 +1096,7 @@ function renderMsg(m,prev,anim){
   wrap.id='msg-'+m.id;
   const mav=document.createElement('div');
   mav.className='av mav';mav.style.cssText=`width:28px;height:28px;font-size:12px;background:${m.color||'#a855f7'};color:#fff;font-weight:800;`;
-  if(m.avUrl){mav.innerHTML=`<img src="${m.avUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}
-  else{mav.textContent=m.avEmoji||(m.username||'?')[0].toUpperCase();}
+  if(m.avUrl){mav.style.overflow='hidden';mav.innerHTML=`<img src="${m.avUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}else{mav.textContent=m.avEmoji||(m.username||'?')[0].toUpperCase();}
   mav.title='@'+(m.username||'');
   if(!isOut)mav.onclick=()=>showUserProfile(m.username);
   const mc=document.createElement('div');mc.className='mc';
@@ -1273,7 +1320,17 @@ function playRingtone(){
   }catch(e){}
 }
 function stopRingtone(){if(ringInterval)clearInterval(ringInterval);ringInterval=null;try{ringCtx?.close();}catch{}ringCtx=null;}
-function playMsgSound(){try{const c=new(window.AudioContext||window.webkitAudioContext)();const o=c.createOscillator();const g=c.createGain();o.frequency.value=800;o.type='sine';g.gain.setValueAtTime(.08,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.12);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.12);setTimeout(()=>c.close(),250);}catch{}}
+function playMsgSound(){
+  if(!priv.sounds)return;
+  try{
+    const ac=new(window.AudioContext||window.webkitAudioContext)();
+    const o=ac.createOscillator();const g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.frequency.value=880;g.gain.setValueAtTime(0.1,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.18);
+    o.start(ac.currentTime);o.stop(ac.currentTime+0.18);
+  }catch(e){}
+}
 
 // ═══════════════════════════════════════
 // WEBRTC CALLS
@@ -1569,142 +1626,47 @@ async function admClearAll(){
 // ═══════════════════════════════════════
 async function openProfMo(){
   const pa=document.getElementById('profAv');
-  pa.style.background=ME.color;pa.style.color='#fff';
+  pa.style.background=ME.color;pa.style.color='#fff';pa.style.overflow='hidden';
   if(ME.avUrl){pa.innerHTML=`<img src="${ME.avUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}
   else{pa.textContent=ME.avEmoji||ME.displayName[0].toUpperCase();}
-  _avPngFile=null;_avPngDataUrl=null;
-  const img=document.getElementById('pngPreviewImg');
-  const ph=document.getElementById('pngPreviewPlaceholder');
-  if(img){if(ME.avUrl){img.src=ME.avUrl;img.style.display='block';if(ph)ph.style.display='none';}else{img.style.display='none';if(ph)ph.style.display='block';}}
   document.getElementById('profNm').textContent=ME.displayName+(ME.badge?' '+ME.badge:'')+(ME.isDev?' ⚡':'');
   document.getElementById('profH').textContent='@'+ME.username+(ME.isPremium?' ⭐':'');
   document.getElementById('profBio').textContent=ME.bio||'Нажми чтобы добавить биографию...';
   document.getElementById('profBio').style.color=ME.bio?'var(--t2)':'var(--t3)';
+  const profStatVal=document.getElementById('profStatVal');
+  if(profStatVal)profStatVal.textContent=ME.customStatus||'онлайн';
   const us=await db.ref('users/'+ME.uid).once('value');const u=us.val()||{};
   document.getElementById('pmMsgs').textContent=u.msgCount||0;
   document.getElementById('pmDays').textContent=u.createdAt?Math.floor((Date.now()-u.createdAt)/86400000):0;
   document.getElementById('pmDMs').textContent=Object.keys(u.dms||{}).length;
-  if(u.music){document.getElementById('pmTitle').textContent='🎵 '+u.music.title;document.getElementById('musUrl').value=u.music.url||'';document.getElementById('musTitle').value=u.music.title||'';}
-  else{document.getElementById('pmTitle').textContent='Добавить музыку';}
-  document.getElementById('profStatRow').textContent='Статус: '+(ME.customStatus||'онлайн');
+  const mmr=document.getElementById('pmMusicRow');
+  if(u.music&&u.music.title){if(mmr)mmr.textContent='🎵 '+u.music.title;document.getElementById('musUrl').value=u.music.url||'';document.getElementById('musTitle').value=u.music.title||'';}
+  else{if(mmr)mmr.textContent='Добавить музыку';}
   selAvE=ME.avEmoji;selAvC=ME.color;selBdg=ME.badge;
-  // Load my channels
+  _avPngFile=null;
+  const pi=document.getElementById('pngPreviewImg');
+  const pp=document.getElementById('pngPreviewPlaceholder');
+  if(pi&&pp){if(ME.avUrl){pi.src=ME.avUrl;pi.style.display='block';pp.style.display='none';}else{pi.style.display='none';pp.style.display='block';}}
   loadMyChannels();
   switchProfTab('main');
   document.getElementById('profMo').classList.add('on');
 }
 
-function switchProfTab(tab){
-  const tabs=['main','av','priv','ch','music'];
-  tabs.forEach(t=>{
-    const btn=document.getElementById('ptab-'+t);
-    const body=document.getElementById('ptab-'+t+'-body');
-    if(btn)btn.classList.toggle('on',t===tab);
-    if(body)body.style.display=t===tab?'':'none';
-  });
-}
-
-async function loadMyChannels(){
-  const list=document.getElementById('myChannelsList');
-  if(!list)return;
-  list.innerHTML='<div style="font-size:11px;color:var(--t3);padding:8px 0;">Загрузка...</div>';
-  const snap=await db.ref('rooms').orderByChild('createdBy').equalTo(ME.uid).once('value');
-  list.innerHTML='';
-  let count=0;
-  snap.forEach(c=>{
-    const r=c.val();
-    if(r.type!=='channel')return;
-    count++;
-    const d=document.createElement('div');
-    d.className='upro-ch-item';
-    d.innerHTML=`<span style="font-size:18px;">${r.emoji||'📢'}</span><div style="flex:1;"><div style="font-size:13px;font-weight:700;">${esc(r.name)}</div><div style="font-size:10px;color:var(--t2);">${esc(r.desc||'')}</div></div>`;
-    d.onclick=()=>{closeMo('profMo');openRoom(c.key,'channel');};
-    list.appendChild(d);
-  });
-  if(!count)list.innerHTML='<div style="font-size:11px;color:var(--t3);padding:8px 0;">У тебя пока нет каналов</div>';
-}
-
-function clearMusic(){
-  db.ref('users/'+ME.uid+'/music').remove();
-  ME.music=null;
-  document.getElementById('pmTitle').textContent='Добавить музыку';
-  document.getElementById('musUrl').value='';
-  document.getElementById('musTitle').value='';
-  toast('🎵 Музыка убрана');
-}
-
 async function editBio(){const b=prompt('Биография:',ME.bio||'');if(b===null)return;ME.bio=b.slice(0,120);await db.ref('users/'+ME.uid+'/bio').set(ME.bio);document.getElementById('profBio').textContent=ME.bio||'Нажми чтобы добавить биографию...';toast('✅ Биография обновлена');}
 function copyLink(){const url=location.origin+location.pathname+'?dm='+ME.username;navigator.clipboard.writeText(url).then(()=>toast('🔗 Скопировано!'));}
 function shareRoom(){if(!CR)return;const url=location.origin+location.pathname+'?room='+CR.id;navigator.clipboard.writeText(url).then(()=>toast('🔗 Ссылка скопирована!'));}
-// ═══════════════════════════════════════
-// AVATAR — PNG SUPPORT
-// ═══════════════════════════════════════
-let _avPngFile=null,_avPngDataUrl=null;
-
-function switchAvTab(tab){
-  document.getElementById('avt-emoji').classList.toggle('on',tab==='emoji');
-  document.getElementById('avt-png').classList.toggle('on',tab==='png');
-  document.getElementById('avp-emoji').style.display=tab==='emoji'?'':'none';
-  document.getElementById('avp-png').style.display=tab==='png'?'':'none';
-}
-
-function onAvPngSelect(inp){
-  const file=inp.files[0];if(!file)return;
-  if(file.size>2*1024*1024){toast('❌ Картинка больше 2MB');return;}
-  _avPngFile=file;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    _avPngDataUrl=e.target.result;
-    const img=document.getElementById('pngPreviewImg');
-    const ph=document.getElementById('pngPreviewPlaceholder');
-    img.src=_avPngDataUrl;img.style.display='block';ph.style.display='none';
-  };
-  reader.readAsDataURL(file);
-}
-
-async function saveAvPng(){
-  if(!_avPngFile&&!ME.avUrl){toast('❌ Сначала выбери картинку');return;}
-  const st=document.getElementById('pngUploadStatus');
-  if(_avPngFile){
-    if(!storage){toast('❌ Firebase Storage недоступен');return;}
-    st.textContent='⏳ Загружаю...';st.style.display='block';
-    try{
-      const ref=storage.ref('avatars/'+ME.uid+'.'+_avPngFile.name.split('.').pop());
-      await ref.put(_avPngFile);
-      const url=await ref.getDownloadURL();
-      ME.avUrl=url;ME.avEmoji=null;
-      await db.ref('users/'+ME.uid).update({avUrl:url,avEmoji:null});
-      // Update presence so others see new avatar
-      await db.ref('presence/'+ME.uid).update({avUrl:url,avEmoji:null});
-      renderSbUser();
-      st.textContent='✅ Загружено!';
-      setTimeout(()=>{st.style.display='none';closeMo('avpick');},800);
-      toast('✅ Аватар обновлён');
-      _avPngFile=null;
-    }catch(e){st.textContent='❌ Ошибка: '+e.message;console.error(e);}
-  }else{
-    closeMo('avpick');
-  }
-}
-
-async function saveAv(){const e=selAvE||ME.avEmoji,c=selAvC||ME.color;ME.avEmoji=e;ME.color=c;ME.avUrl=null;await db.ref('users/'+ME.uid).update({avEmoji:e,color:c,avUrl:null});await db.ref('presence/'+ME.uid).update({avUrl:null,avEmoji:e});renderSbUser();closeMo('avpick');toast('✅ Аватар обновлён');}
+async function saveAv(){const e=selAvE||ME.avEmoji,c=selAvC||ME.color;ME.avEmoji=e;ME.color=c;ME.avUrl=null;await db.ref('users/'+ME.uid).update({avEmoji:e,color:c,avUrl:null});await db.ref('presence/'+ME.uid).update({avEmoji:e,avUrl:null});renderSbUser();switchProfTab('main');toast('✅ Аватар обновлён');}
 async function saveBdg(){if(!ME.isPremium&&selBdg){toast('⭐ Бейдж — только Premium');openMo('prem');return;}ME.badge=selBdg||'';await db.ref('users/'+ME.uid+'/badge').set(ME.badge);renderSbUser();closeMo('bdgMo');toast('✅ Бейдж обновлён');}
-async function saveMusic(){const url=document.getElementById('musUrl').value.trim(),title=document.getElementById('musTitle').value.trim()||url;if(!url){toast('❌ Введи ссылку');return;}ME.music={url,title};await db.ref('users/'+ME.uid+'/music').set({url,title});document.getElementById('pmTitle').textContent='🎵 '+title;switchProfTab('main');toast('🎵 Музыка добавлена!');}
-
-// ═══════════════════════════════════════
-// PREMIUM
-// ═══════════════════════════════════════
-async function activPrem(){
-  const key=document.getElementById('pki').value;
-  const ok=await checkKey(key);
-  if(ok){ME.isPremium=true;await db.ref('users/'+ME.uid+'/isPremium').set(true);document.getElementById('sbtn').classList.add('gold');renderSbUser();closeMo('prem');toast('⭐ Premium активирован!');document.getElementById('premRowTxt').textContent='⭐ Premium активен';}
-  else toast('❌ Неверный ключ');
+async function saveMusic(){
+  const url=document.getElementById('musUrl').value.trim();
+  const title=document.getElementById('musTitle').value.trim()||url;
+  if(!url){toast('❌ Введи ссылку');return;}
+  ME.music={url,title};
+  await db.ref('users/'+ME.uid+'/music').set({url,title});
+  const mmr=document.getElementById('pmMusicRow');
+  if(mmr)mmr.textContent='🎵 '+title;
+  switchProfTab('main');toast('🎵 Музыка добавлена!');
 }
-
-// ═══════════════════════════════════════
-// SETTINGS
-// ═══════════════════════════════════════
-function initSettingsUI(){['ls','rr','on','snd'].forEach((k,i)=>{const keys=['lastSeen','readReceipts','online','sounds'];const el=document.getElementById('tp-'+k);if(el)el.classList.toggle('on',priv[keys[i]]!==false);});}
 async function togP(key){priv[key]=!priv[key];const map={lastSeen:'ls',readReceipts:'rr',online:'on',sounds:'snd'};const el=document.getElementById('tp-'+map[key]);if(el)el.classList.toggle('on',priv[key]);await db.ref('users/'+ME.uid+'/priv/'+key).set(priv[key]);toast('✅ Сохранено');}
 async function changeUn(){const nu=prompt('Новый юзернейм:',ME.username);if(!nu||nu===ME.username)return;if(!/^[a-z0-9_]{3,20}$/.test(nu)){toast('❌ Неверный формат');return;}const s=await db.ref('usernames/'+nu).once('value');if(s.exists()){toast('❌ @'+nu+' занят');return;}await db.ref('usernames/'+ME.username).remove();await db.ref('usernames/'+nu).set(ME.uid);await db.ref('users/'+ME.uid).update({username:nu,displayName:nu});ME.username=nu;ME.displayName=nu;const ses=JSON.parse(localStorage.getItem('hgses')||'{}');ses.username=nu;localStorage.setItem('hgses',JSON.stringify(ses));renderSbUser();document.getElementById('curUn').textContent='@'+nu;toast('✅ Юзернейм изменён!');}
 async function changePwd(){const oldp=prompt('Текущий пароль:');if(!oldp)return;const oldHash=await _sha(oldp);const s=await db.ref('users/'+ME.uid+'/pwdHash').once('value');if(s.val()!==oldHash){toast('❌ Неверный пароль');return;}const np=prompt('Новый пароль (мин. 4 символа):');if(!np||np.length<4){toast('❌ Слишком короткий');return;}const newHash=await _sha(np);await db.ref('users/'+ME.uid+'/pwdHash').set(newHash);const ses=JSON.parse(localStorage.getItem('hgses')||'{}');ses.pwdHash=newHash;localStorage.setItem('hgses',JSON.stringify(ses));toast('✅ Пароль изменён!');}
@@ -1746,7 +1708,7 @@ async function openMembersModal(){
   members.sort((a,b)=>(b.online?1:0)-(a.online?1:0));
   members.forEach(p=>{
     const div=document.createElement('div');div.style.cssText='display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--brd2);';
-    div.innerHTML=`<div class="av" style="width:32px;height:32px;font-size:12px;background:${p.color||'#a855f7'};color:#fff;overflow:hidden;">${p.avUrl?`<img src='${p.avUrl}' style='width:100%;height:100%;object-fit:cover;border-radius:50%;'>`:p.avEmoji||p.username?.[0]?.toUpperCase()||'?'}</div><div style="flex:1;"><div style="font-size:13px;font-weight:700;">@${esc(p.username||'?')}${p.badge?' '+p.badge:''}${p.isPremium?' ⭐':''}${p.isDev?' ⚡':''}</div><div style="font-size:10px;color:var(--t2);">${p.online?'● онлайн':'был(а) '+fmtT(p.lastSeen||0)}</div></div>`;
+    div.innerHTML=`<div class="av" style="width:32px;height:32px;font-size:12px;background:${p.color||'#a855f7'};color:#fff;">${p.avEmoji||p.username?.[0]?.toUpperCase()||'?'}</div><div style="flex:1;"><div style="font-size:13px;font-weight:700;">@${esc(p.username||'?')}${p.badge?' '+p.badge:''}${p.isPremium?' ⭐':''}${p.isDev?' ⚡':''}</div><div style="font-size:10px;color:var(--t2);">${p.online?'● онлайн':'был(а) '+fmtT(p.lastSeen||0)}</div></div>`;
     div.onclick=()=>{closeMo('memMo');showUserProfile(p.username);};
     list.appendChild(div);
   });
@@ -1759,10 +1721,9 @@ async function openMembersModal(){
 // ═══════════════════════════════════════
 async function openChatInfo(){
   if(!CR)return;
-  // For DM — open full user profile
   if(CR.type==='dm'){await showUserProfile(CR.name);return;}
-  // For channel/public — show old chatInfoMo
   const av=document.getElementById('ciAvBig');
+  av.style.overflow='hidden';
   av.textContent=CR.emoji||CR.name[0];av.style.cssText=`width:52px;height:52px;font-size:22px;background:${CR.type==='channel'?'#1d4ed8':'#a855f7'};color:#fff;overflow:hidden;`;
   document.getElementById('ciName2').textContent=(CR.type==='dm'?'@':'')+CR.name+(CR.type==='channel'?' 📢':'');
   document.getElementById('ciSub2').textContent=CR.desc||CR.type;
@@ -1775,78 +1736,56 @@ async function openChatInfo(){
   openMo('chatInfoMo');
 }
 
-let _uproData={};
-
 async function showUserProfile(username){
   const snap=await db.ref('usernames/'+username.toLowerCase()).once('value');
-  if(!snap.exists()){toast('❌ Пользователь не найден');return;}
+  if(!snap.exists()){toast('❌ @'+username+' не найден');return;}
   const uid=snap.val();
-  const us=await db.ref('users/'+uid).once('value');const u=us.val()||{};
-  const pr=await db.ref('presence/'+uid).once('value');const p=pr.val()||{};
-  _uproData={username,uid,u,p};
-
-  // Avatar
+  const [usSnap,prSnap]=await Promise.all([db.ref('users/'+uid).once('value'),db.ref('presence/'+uid).once('value')]);
+  const u=usSnap.val()||{};const p=prSnap.val()||{};
+  _uproCtx={username,uid,u};
+  // avatar
   const av=document.getElementById('uproAv');
   av.style.background=u.color||'#a855f7';av.style.color='#fff';
   if(u.avUrl){av.innerHTML=`<img src="${u.avUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}
   else{av.textContent=u.avEmoji||username[0].toUpperCase();}
-
-  // Name/handle/status
-  document.getElementById('uproName').textContent=u.displayName||username+(u.badge?' '+u.badge:'')+(u.isPremium?' ⭐':'')+(u.isDev?' ⚡':'');
+  // name/status
+  document.getElementById('uproName').textContent=(u.displayName||username)+(u.badge?' '+u.badge:'')+(u.isPremium?' ⭐':'')+(u.isDev?' ⚡':'');
   document.getElementById('uproHandle').textContent='@'+username;
-  const online=p.online&&u.priv?.online!==false;
+  const showOnline=u.priv?.online!==false&&p.online;
   const showSeen=u.priv?.lastSeen!==false;
-  document.getElementById('uproStatus').textContent=online?'● онлайн':(showSeen&&p.lastSeen?'был(а) '+fmtT(p.lastSeen):'');
+  document.getElementById('uproStatus').textContent=showOnline?'● онлайн':(showSeen&&p.lastSeen?'был(а) '+fmtT(p.lastSeen):'');
   document.getElementById('uproBio').textContent=u.bio||'';
-
-  // Music
-  const musicRow=document.getElementById('uproMusicRow');
-  if(u.music&&u.music.url){
-    musicRow.style.display='flex';
-    document.getElementById('uproMusicTitle').textContent=u.music.title||u.music.url;
-  }else{musicRow.style.display='none';}
-
-  // Channels owned by this user
-  const chWrap=document.getElementById('uproChWrap');
-  const chList=document.getElementById('uproChList');
-  chList.innerHTML='';
+  // music
+  const mw=document.getElementById('uproMusicWrap');
+  if(u.music&&u.music.url){mw.style.display='block';document.getElementById('uproMusicTitle').textContent=u.music.title||u.music.url;}
+  else{mw.style.display='none';}
+  // channels
+  const cw=document.getElementById('uproChWrap');
+  const cl=document.getElementById('uproChList');
+  cl.innerHTML='';
   const chSnap=await db.ref('rooms').orderByChild('createdBy').equalTo(uid).once('value');
-  let chCount=0;
-  chSnap.forEach(c=>{
-    const r=c.val();if(r.type!=='channel')return;
-    chCount++;
-    const d=document.createElement('div');
-    d.className='upro-ch-item';
+  let n=0;
+  chSnap.forEach(c=>{const r=c.val();if(r.type!=='channel')return;n++;
+    const d=document.createElement('div');d.className='upro-ch-item';
     d.innerHTML=`<span style="font-size:16px;">${r.emoji||'📢'}</span><div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:700;">${esc(r.name)}</div><div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(r.desc||'')}</div></div>`;
     d.onclick=()=>{closeMo('uproMo');openRoom(c.key,'channel');};
-    chList.appendChild(d);
+    cl.appendChild(d);
   });
-  chWrap.style.display=chCount?'block':'none';
-
-  // Dev actions
-  const devActs=document.getElementById('uproDevActs');
-  devActs.innerHTML='';
+  cw.style.display=n?'block':'none';
+  // dev actions
+  const dw=document.getElementById('uproDevWrap');
+  dw.innerHTML='';
   if(ME.isDev&&!u.banned&&uid!==ME.uid){
-    const btn=document.createElement('button');
-    btn.className='pbtn';btn.style.cssText='background:rgba(248,113,113,.15);color:var(--red);box-shadow:none;margin-top:4px;';
-    btn.textContent='⚡ [DEV] Забанить';btn.onclick=()=>admBanUser(username);
-    devActs.appendChild(btn);
+    const b=document.createElement('button');b.className='pbtn';
+    b.style.cssText='background:rgba(248,113,113,.12);color:var(--red);box-shadow:none;width:100%;';
+    b.textContent='⚡ [DEV] Забанить';b.onclick=()=>admBanUser(username);dw.appendChild(b);
   }
-
   document.getElementById('uproMo').classList.add('on');
 }
-
-function openUproMusic(){
-  if(_uproData.u?.music?.url)window.open(_uproData.u.music.url,'_blank');
-}
-function uproWriteDM(){
-  closeMo('uproMo');
-  openDM(_uproData.username);
-}
-function uproCopyLink(){
-  const url=location.origin+location.pathname+'?dm='+(_uproData.username||'');
-  navigator.clipboard.writeText(url).then(()=>toast('🔗 Скопировано!'));
-}
+let _uproCtx={};
+function uproOpenMusic(){if(_uproCtx.u?.music?.url)window.open(_uproCtx.u.music.url,'_blank');}
+function uproWriteDM(){closeMo('uproMo');openDM(_uproCtx.username);}
+function uproCopyLink(){navigator.clipboard.writeText(location.origin+location.pathname+'?dm='+(_uproCtx.username||'')).then(()=>toast('🔗 Скопировано!'));}
 
 // ═══════════════════════════════════════
 // SIDEBAR PREVIEW / URL / UTILS
@@ -1864,6 +1803,89 @@ function toast(msg){const el=document.getElementById('toast');el.textContent=msg
 document.addEventListener('scroll',()=>document.getElementById('ctxm').style.display='none',true);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('ctxm').style.display='none';closePicker();}});
 
+
+// ── PROFILE TAB SWITCHER ─────────────────────────────────────────
+function switchProfTab(tab){
+  ['main','av','priv','ch','music'].forEach(t=>{
+    const btn=document.getElementById('ptab-'+t);
+    const body=document.getElementById('ptab-'+t+'-body');
+    if(btn)btn.classList.toggle('on',t===tab);
+    if(body)body.style.display=(t===tab)?'':'none';
+  });
+}
+
+// ── MY CHANNELS LIST ─────────────────────────────────────────────
+async function loadMyChannels(){
+  const list=document.getElementById('myChannelsList');
+  if(!list)return;
+  list.innerHTML='<div style="font-size:11px;color:var(--t3);padding:6px 0;">Загрузка...</div>';
+  const snap=await db.ref('rooms').orderByChild('createdBy').equalTo(ME.uid).once('value');
+  list.innerHTML='';let n=0;
+  snap.forEach(c=>{const r=c.val();if(r.type!=='channel')return;n++;
+    const d=document.createElement('div');d.className='upro-ch-item';
+    d.innerHTML=`<span style="font-size:16px;">${r.emoji||'📢'}</span><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:700;">${esc(r.name)}</div><div style="font-size:10px;color:var(--t2);">${esc(r.desc||'')}</div></div>`;
+    d.onclick=()=>{closeMo('profMo');openRoom(c.key,'channel');};
+    list.appendChild(d);
+  });
+  if(!n)list.innerHTML='<div style="font-size:11px;color:var(--t3);padding:6px 0;">У тебя пока нет каналов</div>';
+}
+
+// ── AVATAR TAB SWITCHER ──────────────────────────────────────────
+function switchAvTab(tab){
+  document.getElementById('avt-emoji').classList.toggle('on',tab==='emoji');
+  document.getElementById('avt-png').classList.toggle('on',tab==='png');
+  document.getElementById('avp-emoji').style.display=tab==='emoji'?'':'none';
+  document.getElementById('avp-png').style.display=tab==='png'?'':'none';
+}
+
+// ── PNG AVATAR ───────────────────────────────────────────────────
+let _avPngFile=null;
+function onAvPngSelect(inp){
+  const file=inp.files[0];if(!file)return;
+  if(file.size>2*1024*1024){toast('❌ Файл больше 2MB');return;}
+  _avPngFile=file;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const pi=document.getElementById('pngPreviewImg');
+    const pp=document.getElementById('pngPreviewPlaceholder');
+    if(pi){pi.src=e.target.result;pi.style.display='block';}
+    if(pp)pp.style.display='none';
+  };
+  reader.readAsDataURL(file);
+}
+async function saveAvPng(){
+  if(!_avPngFile){toast('❌ Сначала выбери картинку');return;}
+  if(!storage){toast('❌ Firebase Storage не настроен');return;}
+  const st=document.getElementById('pngUploadStatus');
+  if(st){st.textContent='⏳ Загружаю...';st.style.display='block';}
+  try{
+    const ext=_avPngFile.name.split('.').pop()||'jpg';
+    const ref=storage.ref('avatars/'+ME.uid+'.'+ext);
+    await ref.put(_avPngFile);
+    const url=await ref.getDownloadURL();
+    ME.avUrl=url;ME.avEmoji=null;
+    await db.ref('users/'+ME.uid).update({avUrl:url,avEmoji:null});
+    await db.ref('presence/'+ME.uid).update({avUrl:url,avEmoji:null});
+    renderSbUser();
+    // update profAv preview
+    const pa=document.getElementById('profAv');
+    if(pa){pa.style.overflow='hidden';pa.innerHTML=`<img src="${url}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}
+    if(st){st.textContent='✅ Готово!';setTimeout(()=>{st.style.display='none';switchProfTab('main');},800);}
+    toast('✅ Аватар обновлён');_avPngFile=null;
+  }catch(e){if(st)st.textContent='❌ '+e.message;console.error(e);}
+}
+
+// ── CLEAR MUSIC ──────────────────────────────────────────────────
+async function clearMusic(){
+  await db.ref('users/'+ME.uid+'/music').remove();
+  ME.music=null;
+  const mmr=document.getElementById('pmMusicRow');
+  if(mmr)mmr.textContent='Добавить музыку';
+  document.getElementById('musUrl').value='';
+  document.getElementById('musTitle').value='';
+  toast('🎵 Музыка убрана');switchProfTab('main');
+}
+
 // ═══════════════════════════════════════
 // BOOT
 // ═══════════════════════════════════════
@@ -1880,691 +1902,13 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElement
         if(snap.exists()){
           const u=snap.val();
           if(u.banned){showAuth();err('le','⛔ Аккаунт заблокирован');document.getElementById('lf').style.display='';document.getElementById('rf').style.display='none';document.getElementById('treg').classList.remove('on');document.getElementById('tlog').classList.add('on');return;}
-          if(u.pwdHash===s.pwdHash){ME={uid:s.uid,...u};await initGeneral();startApp();return;}
+          if(u.pwdHash===s.pwdHash){ME={uid:s.uid,...u};wlog('🔑 Вход',{Юзернейм:'@'+un,Время:new Date().toLocaleString('ru')});await initGeneral();startApp();return;}
         }
       }catch(e){console.warn(e);}
     }
   }
   showAuth();
 })();
-
 </script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg0:#0b0a12;--bg1:#11101a;--bg2:#181626;--bg3:#1f1d30;--bg4:#272540;--acc:#a855f7;--acc2:#ec4899;--acg:rgba(168,85,247,.2);--gold:#fbbf24;--gg:rgba(251,191,36,.18);--grn:#34d399;--red:#f87171;--blu:#60a5fa;--t1:#f0eeff;--t2:#9490b8;--t3:#4a4670;--brd:rgba(168,85,247,.14);--brd2:rgba(255,255,255,.055);--r:14px;--rs:10px;}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;overflow:hidden;}
-body{font-family:'Nunito',sans-serif;background:var(--bg0);color:var(--t1);}
-input,textarea,button{font-family:'Nunito',sans-serif;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:4px;}
-a{color:var(--acc);}
-.scr{position:fixed;inset:0;display:none;align-items:center;justify-content:center;}
-.scr.on{display:flex;}
-#aScr{background:radial-gradient(ellipse at 25% 20%,rgba(168,85,247,.1),transparent 55%),radial-gradient(ellipse at 78% 82%,rgba(236,72,153,.07),transparent 50%),var(--bg0);}
-#appScr{display:none;}
-#appScr.on{display:flex;width:100vw;height:100vh;}
-/* AUTH */
-.abox{width:390px;background:var(--bg1);border:1px solid var(--brd);border-radius:24px;padding:36px;box-shadow:0 32px 72px rgba(0,0,0,.6);animation:up .4s ease;}
-@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.logo{display:flex;align-items:center;gap:13px;margin-bottom:24px;}
-.logo-ico{width:50px;height:50px;border-radius:16px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 22px var(--acg);}
-.logo h1{font-size:26px;font-weight:900;letter-spacing:-.5px;background:linear-gradient(135deg,var(--t1) 40%,var(--acc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.logo small{display:block;font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;letter-spacing:2px;-webkit-text-fill-color:var(--t2);}
-.tabs{display:flex;gap:3px;background:var(--bg2);border-radius:var(--rs);padding:3px;margin-bottom:22px;}
-.tab{flex:1;padding:9px;text-align:center;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;color:var(--t2);}
-.tab.on{background:var(--bg4);color:var(--t1);}
-.fld{margin-bottom:14px;}
-.fld label{display:block;font-size:10px;color:var(--t2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;font-family:'JetBrains Mono',monospace;}
-.fld input{width:100%;padding:11px 14px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);color:var(--t1);font-size:13px;outline:none;transition:.2s;}
-.fld input:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acg);}
-.pw{position:relative;}.pfx{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--t3);font-family:'JetBrains Mono',monospace;}
-.fld input.pi{padding-left:25px;}
-.pbtn{width:100%;padding:13px;background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;border-radius:var(--rs);color:#fff;font-weight:800;font-size:14px;cursor:pointer;transition:.2s;box-shadow:0 5px 18px var(--acg);margin-top:10px;}
-.pbtn:hover{transform:translateY(-1px);}
-.pbtn:active{transform:translateY(1px);}
-.errmsg{font-size:11px;color:var(--red);margin-top:6px;font-family:'JetBrains Mono',monospace;display:none;}
-/* LAYOUT */
-.layout{display:flex;width:100%;height:100%;}
-/* SIDEBAR */
-.sidebar{width:286px;flex-shrink:0;background:var(--bg1);display:flex;flex-direction:column;height:100%;border-right:1px solid var(--brd2);}
-.sb-top{padding:10px 9px 6px;}
-.sb-me{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r);cursor:pointer;transition:.15s;margin-bottom:6px;}
-.sb-me:hover{background:var(--bg3);}
-.av{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;position:relative;}
-.odot{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;background:var(--grn);border:2px solid var(--bg1);}
-.sb-info{flex:1;min-width:0;}
-.sb-un{font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap;overflow:hidden;}
-.sb-st{font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;}
-.sw-wrap{position:relative;margin:0 2px 3px;}
-.sbox{display:flex;align-items:center;gap:7px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);padding:8px 11px;}
-.sbox input{background:none;border:none;outline:none;color:var(--t1);font-size:12px;flex:1;}
-.sbox input::placeholder{color:var(--t3);}
-.sres{position:absolute;top:calc(100% + 2px);left:0;right:0;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rs);padding:3px;z-index:60;display:none;box-shadow:0 10px 28px rgba(0,0,0,.5);max-height:200px;overflow-y:auto;}
-.sri{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;transition:.15s;}
-.sri:hover{background:var(--bg3);}
-.sbl{flex:1;overflow-y:auto;padding:0 3px 6px;}
-.sbsec{display:flex;align-items:center;justify-content:space-between;padding:10px 10px 3px;}
-.sblabel{font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;}
-.sbbtn{width:20px;height:20px;border-radius:5px;background:var(--bg3);border:none;color:var(--t2);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.sbbtn:hover{background:var(--bg4);color:var(--t1);}
-.cr{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:var(--r);cursor:pointer;transition:.15s;}
-.cr:hover{background:var(--bg3);}
-.cr.on{background:rgba(168,85,247,.1);border-left:3px solid var(--acc);padding-left:7px;}
-.crm{flex:1;min-width:0;}
-.crn{font-size:13px;font-weight:700;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.crp{font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace;}
-.crr{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0;}
-.crt{font-size:9px;color:var(--t3);font-family:'JetBrains Mono',monospace;}
-.sbft{display:flex;border-top:1px solid var(--brd2);padding:4px 2px;}
-.sft{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;border-radius:var(--rs);cursor:pointer;transition:.15s;color:var(--t2);font-size:9px;font-weight:700;}
-.sft:hover{background:var(--bg3);color:var(--t1);}
-.sft .ico{font-size:17px;}
-/* CHAT */
-.chat-main{flex:1;display:flex;flex-direction:column;height:100%;background:var(--bg0);overflow:hidden;}
-.welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:.4;}
-.welcome .wi{font-size:56px;animation:wbounce 2.5s ease-in-out infinite;}
-@keyframes wbounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.welcome h2{font-size:20px;font-weight:800;color:var(--t2);}
-.welcome p{font-size:11px;color:var(--t3);font-family:'JetBrains Mono',monospace;}
-#cv{display:none;flex-direction:column;flex:1;height:100%;overflow:hidden;}
-.ch{padding:10px 16px;background:rgba(11,10,18,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--brd2);display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.chi{flex:1;cursor:pointer;}
-.chn{font-size:15px;font-weight:800;display:flex;align-items:center;gap:6px;}
-.chs{font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;margin-top:1px;}
-.hacts{display:flex;gap:5px;}
-.hbtn{width:33px;height:33px;border-radius:var(--rs);background:var(--bg2);border:1px solid var(--brd2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:.15s;color:var(--t2);}
-.hbtn:hover{border-color:var(--brd);color:var(--t1);}
-.echip{display:inline-flex;align-items:center;gap:3px;font-size:9px;color:var(--t3);background:var(--bg2);border:1px solid var(--brd2);border-radius:20px;padding:2px 7px;font-family:'JetBrains Mono',monospace;}
-.pinned-bar{padding:7px 16px;background:rgba(168,85,247,.06);border-bottom:1px solid rgba(168,85,247,.15);display:none;align-items:center;gap:10px;cursor:pointer;}
-.pin-ico{font-size:13px;color:var(--acc);}
-.pin-text{flex:1;font-size:12px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace;}
-.msgs{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:1px;}
-.dsep{text-align:center;padding:8px 0;font-size:9px;color:var(--t3);font-family:'JetBrains Mono',monospace;}
-.dsep span{background:var(--bg2);border:1px solid var(--brd2);padding:3px 10px;border-radius:20px;}
-.mw{display:flex;gap:7px;align-items:flex-end;padding:1px 0;animation:mi .15s ease;}
-@keyframes mi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.mw.out{flex-direction:row-reverse;}
-.mw.dup .mav{visibility:hidden;}
-.mav{width:28px;height:28px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;font-weight:800;}
-.mc{max-width:66%;display:flex;flex-direction:column;}
-.mw.out .mc{align-items:flex-end;}
-.msn{font-size:10px;font-weight:700;margin-bottom:2px;padding-left:2px;cursor:pointer;}
-.fwd-tag{font-size:9px;color:var(--t3);margin-bottom:2px;font-family:'JetBrains Mono',monospace;}
-.rprev{background:rgba(168,85,247,.08);border-left:2px solid var(--acc);border-radius:4px;padding:4px 9px;margin-bottom:3px;font-size:11px;cursor:pointer;}
-.rprev .rn{font-weight:700;color:var(--acc);font-size:10px;margin-bottom:1px;}
-.rprev .rt{color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.mb{padding:8px 12px;border-radius:16px;font-size:13px;line-height:1.55;word-break:break-word;cursor:pointer;}
-.mw.in .mb{background:var(--bg2);border-radius:16px 16px 16px 3px;border:1px solid var(--brd2);}
-.mw.out .mb{background:linear-gradient(135deg,#2a1860,#38103c);border-radius:16px 16px 3px 16px;border:1px solid rgba(168,85,247,.2);}
-.mb.stk{background:transparent!important;border:none!important;padding:4px!important;font-size:54px;line-height:1;}
-.mb.gif-mb{background:transparent!important;border:none!important;padding:2px!important;}
-.gif-mb img{max-width:200px;max-height:160px;border-radius:12px;display:block;}
-.file-mb{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border-radius:12px;min-width:180px;max-width:260px;border:1px solid var(--brd2);}
-.file-ico{font-size:24px;flex-shrink:0;}
-.file-info{flex:1;min-width:0;}
-.file-name{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.file-size{font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;}
-.file-dl{font-size:18px;cursor:pointer;color:var(--acc);transition:.15s;}
-.file-dl:hover{transform:scale(1.1);}
-.vid-mb{max-width:280px;}
-.vid-mb video{width:100%;border-radius:12px;display:block;max-height:200px;}
-.mm{display:flex;align-items:center;gap:4px;padding:2px 0 0;justify-content:flex-end;}
-.mt{font-size:9px;color:var(--t3);font-family:'JetBrains Mono',monospace;}
-.mtk{font-size:10px;color:var(--acc);}
-.med{font-size:9px;color:var(--t3);font-style:italic;}
-/* VOICE */
-.vm{display:flex;align-items:center;gap:9px;padding:6px 10px;min-width:185px;}
-.vmbtn{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;color:#fff;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;}
-.vmbtn:hover{transform:scale(1.07);}
-.vmw{flex:1;height:26px;}
-.vmw canvas{width:100%;height:100%;}
-.vmd{font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;flex-shrink:0;}
-/* REACTIONS */
-.rxrow{display:flex;gap:3px;flex-wrap:wrap;margin-top:3px;}
-.rxc{display:inline-flex;align-items:center;gap:2px;background:var(--bg3);border:1px solid var(--brd2);border-radius:20px;padding:2px 7px;font-size:12px;cursor:pointer;transition:.15s;}
-.rxc:hover{border-color:var(--acc);}
-.rxc.me{background:rgba(168,85,247,.12);border-color:var(--acc);}
-.rxn{font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;}
-/* CTX */
-.ctx{position:fixed;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:4px;z-index:200;min-width:165px;box-shadow:0 12px 32px rgba(0,0,0,.6);animation:up .12s ease;}
-.cxi{display:flex;align-items:center;gap:9px;padding:8px 13px;border-radius:var(--rs);cursor:pointer;font-size:12px;font-weight:600;transition:.15s;}
-.cxi:hover{background:var(--bg3);}
-.cxi.d{color:var(--red);}
-.cxi.adm{color:var(--gold);}
-.ctx-sep{height:1px;background:var(--brd2);margin:3px 0;}
-/* PICKER */
-.picker{position:fixed;background:var(--bg2);border:1px solid var(--brd);border-radius:18px;padding:10px;z-index:201;box-shadow:0 14px 36px rgba(0,0,0,.6);width:320px;}
-.ptabs{display:flex;gap:3px;margin-bottom:8px;}
-.ptab{flex:1;padding:6px;border-radius:7px;font-size:11px;font-weight:700;text-align:center;cursor:pointer;color:var(--t2);transition:.15s;}
-.ptab.on{background:var(--bg3);color:var(--t1);}
-.egrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;max-height:158px;overflow-y:auto;}
-.egrid span{font-size:21px;cursor:pointer;padding:4px;border-radius:7px;text-align:center;transition:.15s;display:block;}
-.egrid span:hover{background:var(--bg3);transform:scale(1.18);}
-.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;max-height:158px;overflow-y:auto;}
-.si{font-size:34px;cursor:pointer;padding:6px;border-radius:10px;text-align:center;transition:.2s;display:block;}
-.si:hover{background:var(--bg3);transform:scale(1.12);}
-.gif-search{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--brd2);border-radius:var(--rs);padding:7px 10px;margin-bottom:8px;}
-.gif-search input{background:none;border:none;outline:none;color:var(--t1);font-size:12px;flex:1;}
-.gif-search input::placeholder{color:var(--t3);}
-.gif-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;max-height:158px;overflow-y:auto;}
-.gif-grid img{width:100%;border-radius:8px;cursor:pointer;transition:.15s;display:block;}
-.gif-grid img:hover{transform:scale(1.03);}
-.gif-loading{text-align:center;padding:20px;font-size:11px;color:var(--t3);font-family:'JetBrains Mono',monospace;}
-/* TYPING */
-.tw{padding:0 16px 5px;display:none;align-items:center;gap:8px;}
-.tdots{display:flex;gap:3px;}
-.tdots span{width:4px;height:4px;border-radius:50%;background:var(--t3);animation:td 1.2s infinite;}
-.tdots span:nth-child(2){animation-delay:.2s;}.tdots span:nth-child(3){animation-delay:.4s;}
-@keyframes td{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
-.ttext{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;}
-/* REPLY BAR */
-.rb{padding:7px 13px;background:var(--bg1);border-top:1px solid var(--brd2);display:none;align-items:center;gap:9px;}
-.rbc2{flex:1;border-left:2px solid var(--acc);padding-left:9px;}
-.rbn2{font-size:10px;font-weight:700;color:var(--acc);margin-bottom:1px;}
-.rbt2{font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.rbx{cursor:pointer;color:var(--t3);font-size:16px;}
-.rbx:hover{color:var(--t1);}
-/* INPUT */
-.ia{padding:10px 12px;background:rgba(11,10,18,.96);backdrop-filter:blur(20px);border-top:1px solid var(--brd2);display:flex;align-items:flex-end;gap:8px;flex-shrink:0;}
-.ib{flex:1;background:var(--bg2);border:1px solid var(--brd2);border-radius:22px;padding:9px 13px;transition:.2s;display:flex;align-items:flex-end;gap:6px;}
-.ib:focus-within{border-color:var(--acc);box-shadow:0 0 0 3px var(--acg);}
-#mi{flex:1;background:none;border:none;outline:none;color:var(--t1);font-size:13px;resize:none;max-height:110px;min-height:20px;line-height:1.5;font-family:'Nunito',sans-serif;}
-#mi::placeholder{color:var(--t3);}
-.ibtn{background:none;border:none;font-size:16px;cursor:pointer;opacity:.4;transition:.2s;padding:0;color:var(--t1);}
-.ibtn:hover{opacity:1;}
-.sbtn{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;color:#fff;font-size:15px;cursor:pointer;transition:.2s;box-shadow:0 4px 14px var(--acg);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.sbtn:hover{transform:scale(1.07);}
-.sbtn:active{transform:scale(.93);}
-.sbtn.gold{background:linear-gradient(135deg,var(--gold),#f59e0b);}
-/* RECORDING UI */
-.rec-ui{display:none;flex:1;align-items:center;gap:10px;padding:6px 12px;background:var(--bg2);border-radius:22px;border:1px solid rgba(248,113,113,.3);}
-.rec-ui.on{display:flex;}
-.rec-dot{width:9px;height:9px;border-radius:50%;background:var(--red);animation:rp .9s infinite;}
-@keyframes rp{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:.6}}
-.rec-time{font-size:13px;font-weight:700;color:var(--red);font-family:'JetBrains Mono',monospace;flex:1;}
-.rec-cancel{font-size:12px;color:var(--t3);cursor:pointer;padding:4px 8px;border-radius:6px;transition:.15s;}
-.rec-cancel:hover{background:var(--bg3);color:var(--t1);}
-.rec-send{padding:6px 14px;background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;}
-/* UPLOAD PROGRESS */
-.upload-bar{height:3px;background:var(--acc);border-radius:3px;transition:width .3s;width:0;}
-.upload-progress{padding:6px 16px;background:rgba(168,85,247,.06);border-top:1px solid var(--brd2);display:none;}
-.upload-progress.on{display:block;}
-.upload-text{font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace;margin-bottom:4px;}
-/* CALL */
-.call-ov{position:fixed;inset:0;z-index:300;background:rgba(8,7,14,.93);backdrop-filter:blur(28px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;}
-.call-ov.on{display:flex;}
-.call-av-big{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;border:3px solid var(--brd);animation:callring 1.8s infinite;}
-@keyframes callring{0%{box-shadow:0 0 0 0 var(--acg)}70%{box-shadow:0 0 0 22px rgba(168,85,247,0)}100%{box-shadow:0 0 0 0 rgba(168,85,247,0)}}
-.call-name{font-size:22px;font-weight:900;}
-.call-stat{font-size:12px;color:var(--t2);font-family:'JetBrains Mono',monospace;}
-.call-dur{font-size:18px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--grn);display:none;}
-.vid-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:600px;max-width:90vw;display:none;}
-.vw{border-radius:14px;overflow:hidden;background:var(--bg2);aspect-ratio:4/3;position:relative;}
-.vw video{width:100%;height:100%;object-fit:cover;}
-.vwl{position:absolute;bottom:7px;left:9px;font-size:10px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:2px 7px;border-radius:20px;font-family:'JetBrains Mono',monospace;}
-.call-ctrls{display:flex;gap:12px;align-items:center;}
-.cc{width:54px;height:54px;border-radius:50%;border:none;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
-.cc:hover{transform:scale(1.07);}
-.cc.end{background:var(--red);color:#fff;}
-.cc.tog{background:var(--bg3);color:var(--t1);}
-.cc.tog.on{background:rgba(168,85,247,.25);color:var(--acc);}
-.call-inc{position:fixed;bottom:20px;right:20px;z-index:310;background:var(--bg2);border:1px solid var(--brd);border-radius:18px;padding:16px 18px;width:270px;box-shadow:0 12px 40px rgba(0,0,0,.6);animation:up .3s ease;}
-.ci-info{display:flex;align-items:center;gap:11px;margin-bottom:13px;}
-.ci-name{font-size:14px;font-weight:800;}
-.ci-tp{font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;}
-.ci-btns{display:flex;gap:9px;}
-.ci-acc{flex:1;padding:10px;background:var(--grn);border:none;border-radius:9px;color:#000;font-weight:800;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;}
-.ci-dec{flex:1;padding:10px;background:var(--red);border:none;border-radius:9px;color:#fff;font-weight:800;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;}
-/* MODALS */
-.mo{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.2s;}
-.mo.on{opacity:1;pointer-events:all;}
-.md{background:var(--bg1);border:1px solid var(--brd);border-radius:22px;padding:26px;width:460px;max-height:86vh;overflow-y:auto;box-shadow:0 36px 72px rgba(0,0,0,.6);transform:scale(.95);transition:.2s;}
-.mo.on .md{transform:scale(1);}
-.md h2{font-size:18px;font-weight:900;margin-bottom:5px;}
-.mdsub{font-size:12px;color:var(--t2);margin-bottom:18px;line-height:1.6;}
-.mclose{width:100%;padding:11px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);color:var(--t2);font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:8px;font-weight:700;}
-.mclose:hover{border-color:var(--brd);color:var(--t1);}
-.pstats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
-.ps{background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--r);padding:12px;text-align:center;}
-.psv{font-size:18px;font-weight:900;margin-bottom:2px;}
-.psk{font-size:9px;color:var(--t2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;}
-.pacts{display:flex;flex-direction:column;gap:6px;}
-.pa{display:flex;align-items:center;gap:9px;padding:11px 13px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);cursor:pointer;transition:.2s;font-size:13px;font-weight:600;}
-.pa:hover{border-color:var(--brd);background:var(--bg3);}
-.avg{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:8px;}
-.avo{font-size:26px;padding:5px;border-radius:9px;cursor:pointer;text-align:center;transition:.2s;border:2px solid transparent;}
-.avo:hover{background:var(--bg3);}
-.avo.sel{border-color:var(--acc);}
-.clg{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
-.clo{width:28px;height:28px;border-radius:50%;cursor:pointer;transition:.2s;border:2px solid transparent;}
-.clo:hover{transform:scale(1.1);}
-.clo.sel{border-color:#fff;}
-.bdgg{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin-top:7px;}
-.bdgo{font-size:19px;padding:4px;border-radius:7px;cursor:pointer;text-align:center;transition:.2s;border:2px solid transparent;}
-.bdgo:hover{background:var(--bg3);}
-.bdgo.sel{border-color:var(--acc);}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.pc{padding:16px;border-radius:var(--r);border:1px solid var(--brd2);}
-.pc.gl{background:linear-gradient(135deg,rgba(251,191,36,.05),transparent);border-color:rgba(251,191,36,.22);}
-.pio{font-size:21px;margin-bottom:7px;}
-.pn{font-size:13px;font-weight:800;margin-bottom:2px;}
-.pp{font-size:20px;font-weight:900;margin-bottom:7px;}
-.pp small{font-size:11px;font-weight:500;color:var(--t2);}
-.pf{list-style:none;}
-.pf li{font-size:10px;color:var(--t2);padding:2px 0;display:flex;gap:4px;font-family:'JetBrains Mono',monospace;}
-.pf li::before{content:'✓';color:var(--acc);}
-.pc.gl .pn,.pc.gl .pp{background:linear-gradient(90deg,var(--gold),#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.pc.gl .pf li::before{color:var(--gold);}
-.ss{margin-bottom:16px;}
-.ss h3{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px;font-family:'JetBrains Mono',monospace;}
-.sr{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);margin-bottom:4px;cursor:pointer;transition:.2s;font-size:13px;font-weight:600;}
-.sr:hover{border-color:var(--brd);}
-.srl{display:flex;align-items:center;gap:9px;}
-.srr{font-size:11px;color:var(--t2);}
-.tog{width:38px;height:21px;border-radius:11px;background:var(--bg3);position:relative;cursor:pointer;transition:.2s;flex-shrink:0;}
-.tog.on{background:var(--acc);}
-.tog::after{content:'';position:absolute;width:17px;height:17px;border-radius:50%;background:#fff;top:2px;left:2px;transition:.2s;}
-.tog.on::after{left:19px;}
-.dbtn{width:100%;padding:11px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:var(--rs);color:var(--red);font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;}
-.dbtn:hover{background:rgba(248,113,113,.13);}
-/* ADMIN PANEL */
-.adm-panel{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:var(--r);padding:14px;margin-bottom:14px;}
-.adm-panel h3{font-size:12px;color:var(--gold);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:10px;}
-.adm-row{display:flex;gap:8px;margin-bottom:8px;}
-.adm-row input{flex:1;padding:9px 12px;background:var(--bg0);border:1px solid rgba(251,191,36,.2);border-radius:var(--rs);color:var(--t1);font-size:13px;outline:none;}
-.adm-row input:focus{border-color:var(--gold);}
-.adm-btn{padding:9px 14px;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.3);border-radius:var(--rs);color:var(--gold);font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;}
-.adm-btn:hover{background:rgba(251,191,36,.25);}
-.adm-btn.red{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:var(--red);}
-.adm-log{background:var(--bg0);border:1px solid var(--brd2);border-radius:var(--rs);padding:10px;max-height:140px;overflow-y:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t2);line-height:1.7;}
-/* TOAST */
-.toast{position:fixed;bottom:18px;right:18px;z-index:999;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:10px 15px;font-size:12px;font-weight:600;box-shadow:0 8px 28px rgba(0,0,0,.55);transform:translateY(60px);opacity:0;transition:.28s;max-width:260px;pointer-events:none;}
-.toast.on{transform:none;opacity:1;}
-/* STICKER ANIMATIONS */
-@keyframes stk-b{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-8px) rotate(-5deg)}75%{transform:translateY(-4px) rotate(3deg)}}
-@keyframes stk-p{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-@keyframes stk-s{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-@keyframes stk-w{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
-.anim-b{animation:stk-b 1s ease infinite;}
-.anim-p{animation:stk-p .8s ease infinite;}
-.anim-s{animation:stk-s 2s linear infinite;}
-.anim-w{animation:stk-w .6s ease infinite;}
-/* MOBILE */
-@media(max-width:680px){.sidebar{position:absolute;left:0;top:0;bottom:0;z-index:50;width:100%;transition:.3s;}.sidebar.mh{transform:translateX(-100%);}.mob-back{display:flex!important;}}
-.mob-back{display:none;background:none;border:none;color:var(--t1);font-size:18px;cursor:pointer;padding:2px;}
-/* PROFILE TABS */
-.prof-tab{flex:1;padding:9px 4px;text-align:center;font-size:10px;font-weight:700;cursor:pointer;color:var(--t2);border-bottom:2px solid transparent;transition:.15s;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;text-transform:uppercase;}
-.prof-tab.on{color:var(--acc);border-bottom-color:var(--acc);background:rgba(168,85,247,.06);}
-/* USER PROFILE CARD (view-only) */
-.uprofile-mo .md{max-width:380px;padding:0;overflow:hidden;}
-.upro-hdr{padding:28px 24px 18px;text-align:center;background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(236,72,153,.08));border-bottom:1px solid var(--brd2);}
-.upro-av{width:80px;height:80px;font-size:30px;margin:0 auto 10px;border:3px solid var(--acc);box-shadow:0 0 0 4px rgba(168,85,247,.12);overflow:hidden;}
-.upro-name{font-size:18px;font-weight:900;letter-spacing:-.3px;margin-bottom:2px;}
-.upro-handle{font-size:12px;color:var(--acc);font-family:'JetBrains Mono',monospace;}
-.upro-status{font-size:11px;color:var(--t2);margin-top:4px;}
-.upro-bio{font-size:12px;color:var(--t2);margin-top:8px;line-height:1.5;}
-.upro-music{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);padding:8px 12px;margin:12px 20px 0;cursor:pointer;transition:.15s;}
-.upro-music:hover{border-color:var(--acc);}
-.upro-channels{padding:0 20px;margin-top:14px;}
-.upro-ch-title{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
-.upro-ch-item{display:flex;align-items:center;gap:9px;padding:7px 10px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--rs);margin-bottom:6px;cursor:pointer;transition:.15s;}
-.upro-ch-item:hover{border-color:var(--acc);background:rgba(168,85,247,.07);}
-.upro-acts{padding:14px 20px 16px;display:flex;flex-direction:column;gap:7px;}
-.ch-locked{padding:14px;background:rgba(11,10,18,.96);border-top:1px solid var(--brd2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);font-family:'JetBrains Mono',monospace;gap:7px;}
-</style>
-</head>
-<body>
-
-<!-- AUTH -->
-<div id="aScr" class="scr on">
-  <div class="abox">
-    <div class="logo"><div class="logo-ico">🐣</div><div><h1>Hatching Gram</h1><small>Private · Encrypted · Anonymous</small></div></div>
-    <div class="tabs"><div class="tab on" id="treg" onclick="stab('r')">Регистрация</div><div class="tab" id="tlog" onclick="stab('l')">Войти</div></div>
-    <div id="rf">
-      <div class="fld"><label>Юзернейм</label><div class="pw"><span class="pfx">@</span><input type="text" id="ru" class="pi" placeholder="nickname123" maxlength="20" autocomplete="off"></div></div>
-      <div class="fld"><label>Пароль</label><input type="password" id="rp" placeholder="Придумай пароль..."></div>
-      <div class="fld"><label>Ключ доступа</label><input type="password" id="rk" placeholder="Введи ключ для входа..."></div>
-      <div class="errmsg" id="re"></div>
-      <button class="pbtn" onclick="doReg()">Создать аккаунт →</button>
-    </div>
-    <div id="lf" style="display:none;">
-      <div class="fld"><label>Юзернейм</label><div class="pw"><span class="pfx">@</span><input type="text" id="lu" class="pi" placeholder="nickname123" autocomplete="off"></div></div>
-      <div class="fld"><label>Пароль</label><input type="password" id="lp" placeholder="Твой пароль..."></div>
-      <div class="errmsg" id="le"></div>
-      <button class="pbtn" onclick="doLog()">Войти →</button>
-    </div>
-  </div>
-</div>
-
-<!-- APP -->
-<div id="appScr" class="scr">
-<div class="layout">
-  <div class="sidebar" id="sidebarEl">
-    <div class="sb-top">
-      <div class="sb-me" onclick="openMo('profMo')">
-        <div class="av" id="sbav" style="width:38px;height:38px;font-size:15px;"><div class="odot"></div></div>
-        <div class="sb-info"><div class="sb-un" id="sbun"></div><div class="sb-st" id="sbst">● онлайн</div></div>
-      </div>
-      <div class="sw-wrap">
-        <div class="sbox"><span style="color:var(--t3);font-size:13px;">🔍</span><input id="si" placeholder="@username или комната..." oninput="hSrch(this.value)"></div>
-        <div class="sres" id="sres"></div>
-      </div>
-    </div>
-    <div class="sbl">
-      <div class="sbsec"><span class="sblabel">Публичный чат</span></div>
-      <div id="rl"></div>
-      <div class="sbsec"><span class="sblabel">Личные сообщения</span></div>
-      <div id="dl"></div>
-      <div class="sbsec"><span class="sblabel">Каналы</span><button class="sbbtn" onclick="openMo('ncm')">+</button></div>
-      <div id="chl"></div>
-    </div>
-    <div class="sbft">
-      <div class="sft" onclick="openMo('ncm')"><div class="ico">📢</div>Канал</div>
-      <div class="sft" onclick="openMo('prem')"><div class="ico">⭐</div>Premium</div>
-      <div class="sft" onclick="openMo('memMo')"><div class="ico">👥</div>Юзеры</div>
-      <div class="sft" onclick="openMo('stm')"><div class="ico">⚙️</div>Настройки</div>
-    </div>
-  </div>
-
-  <div class="chat-main">
-    <div class="welcome" id="wlc"><div class="wi">🐣</div><h2>Hatching Gram</h2><p>// выбери чат</p></div>
-    <div id="cv">
-      <div class="ch">
-        <button class="mob-back" onclick="document.getElementById('sidebarEl').classList.remove('mh')">←</button>
-        <div class="av" id="chav" style="width:36px;height:36px;font-size:15px;flex-shrink:0;cursor:pointer;" onclick="openChatInfo()"></div>
-        <div class="chi" onclick="openChatInfo()"><div class="chn" id="chn"></div><div class="chs" id="chs"></div></div>
-        <div class="echip">🔒 E2E</div>
-        <div class="hacts">
-          <div class="hbtn" id="callBtn" onclick="startCall('audio')">📞</div>
-          <div class="hbtn" id="vidBtn" onclick="startCall('video')">📹</div>
-          <div class="hbtn" onclick="toggleMuteNotif()">🔔</div>
-          <div class="hbtn" onclick="shareRoom()">🔗</div>
-        </div>
-      </div>
-      <div class="pinned-bar" id="pinnedBar" onclick="scrollToPin()">
-        <span class="pin-ico">📌</span><span class="pin-text" id="pinnedText"></span>
-        <span onclick="event.stopPropagation();hidePinBar()" style="color:var(--t3);cursor:pointer;">✕</span>
-      </div>
-      <div class="msgs" id="msgs"></div>
-      <div class="tw" id="tw"><div class="tdots"><span></span><span></span><span></span></div><span class="ttext" id="tt"></span></div>
-      <div class="rb" id="rbEl"><div class="rbc2"><div class="rbn2" id="rbn2"></div><div class="rbt2" id="rbt2"></div></div><div class="rbx" onclick="clrR()">✕</div></div>
-      <div class="upload-progress" id="upProg"><div class="upload-text" id="upTxt">Загрузка...</div><div class="upload-bar" id="upBar"></div></div>
-      <div class="ia" id="ia">
-        <!-- Normal input -->
-        <div class="ib" id="ibNorm">
-          <button class="ibtn" onclick="trigFile()">📎</button>
-          <textarea id="mi" placeholder="Сообщение..." rows="1" onkeydown="mkey(event)" oninput="minp(this)"></textarea>
-          <button class="ibtn" onclick="togglePicker()">😊</button>
-        </div>
-        <!-- Recording UI -->
-        <div class="rec-ui" id="recUI">
-          <div class="rec-dot"></div>
-          <span class="rec-time" id="recTime">0:00</span>
-          <span class="rec-cancel" onclick="cancelRec()">✕ отмена</span>
-          <button class="rec-send" onclick="stopAndSendRec()">➤ Отправить</button>
-        </div>
-        <button class="ibtn" id="recMicBtn" style="opacity:.4;font-size:18px;" onclick="toggleRec()">🎤</button>
-        <button class="sbtn" id="sbtn" onclick="sendMsg()">➤</button>
-      </div>
-      <div class="ch-locked" id="chLocked" style="display:none;">📢 Только создатель канала может публиковать</div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- CALL UI -->
-<div class="call-ov" id="callOv">
-  <div class="call-av-big" id="callAvBig"></div>
-  <div class="call-name" id="callNm"></div>
-  <div class="call-stat" id="callSt">Вызов...</div>
-  <div class="call-dur" id="callDur">0:00</div>
-  <div class="vid-grid" id="vidGrid">
-    <div class="vw"><video id="lvid" autoplay muted playsinline></video><span class="vwl">Вы</span></div>
-    <div class="vw"><video id="rvid" autoplay playsinline></video><span class="vwl" id="rl2">Собеседник</span></div>
-  </div>
-  <div class="call-ctrls">
-    <div class="cc tog" id="muteCC" onclick="toggleCallMute()">🎤</div>
-    <div class="cc tog" id="spkCC" onclick="toggleSpeaker()">🔊</div>
-    <div class="cc end" onclick="endCall()">📵</div>
-    <div class="cc tog" id="camCC" onclick="toggleCam()">📷</div>
-  </div>
-</div>
-<div class="call-inc" id="callInc" style="display:none;">
-  <div class="ci-info">
-    <div class="av" id="ciAv" style="width:40px;height:40px;font-size:16px;"></div>
-    <div><div class="ci-name" id="ciNm"></div><div class="ci-tp" id="ciTp"></div></div>
-  </div>
-  <div class="ci-btns"><button class="ci-acc" onclick="acceptCall()">✓ Принять</button><button class="ci-dec" onclick="declineCall()">✕ Отклонить</button></div>
-</div>
-
-<!-- PICKER -->
-<div class="picker" id="picker" style="display:none;">
-  <div class="ptabs">
-    <div class="ptab on" id="pt-emoji" onclick="switchPTab('emoji')">😊 Эмодзи</div>
-    <div class="ptab" id="pt-sticker" onclick="switchPTab('sticker')">🐣 Стикеры</div>
-    <div class="ptab" id="pt-gif" onclick="switchPTab('gif')">GIF</div>
-  </div>
-  <div id="ppanel-emoji"><div class="egrid" id="egrid"></div></div>
-  <div id="ppanel-sticker" style="display:none;"><div class="sgrid" id="sgrid"></div></div>
-  <div id="ppanel-gif" style="display:none;">
-    <div class="gif-search"><span style="color:var(--t3);">🔍</span><input id="gifq" placeholder="Найти GIF..." oninput="onGifInput(this.value)"></div>
-    <div id="gifgrid" class="gif-grid"><div class="gif-loading">Введи запрос...</div></div>
-  </div>
-</div>
-
-<!-- FILE INPUT -->
-<input type="file" id="fileInput" style="display:none;" onchange="handleFileUpload(this)" multiple>
-
-<!-- MODALS -->
-<div class="mo" id="profMo" onclick="if(event.target===this)closeMo('profMo')">
-<div class="md" style="max-width:420px;padding:0;overflow:hidden;">
-  <!-- Avatar header -->
-  <div style="position:relative;background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(236,72,153,.12));padding:28px 24px 16px;text-align:center;border-bottom:1px solid var(--brd2);">
-    <div style="position:relative;display:inline-block;margin-bottom:12px;">
-      <div class="av" id="profAv" style="width:82px;height:82px;font-size:32px;margin:0 auto;border:3px solid var(--acc);box-shadow:0 0 0 4px rgba(168,85,247,.15);cursor:pointer;overflow:hidden;" onclick="switchProfTab('av')"></div>
-      <div onclick="switchProfTab('av')" style="position:absolute;bottom:2px;right:2px;width:22px;height:22px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer;border:2px solid var(--bg1);">✏️</div>
-    </div>
-    <div style="font-size:19px;font-weight:900;letter-spacing:-.3px;" id="profNm"></div>
-    <div style="font-size:12px;color:var(--acc);font-family:'JetBrains Mono',monospace;margin-top:2px;" id="profH"></div>
-    <div id="profBio" onclick="editBio()" style="font-size:12px;color:var(--t2);margin-top:6px;cursor:pointer;min-height:18px;"></div>
-  </div>
-  <!-- Tab nav -->
-  <div style="display:flex;border-bottom:1px solid var(--brd2);background:var(--bg1);">
-    <div class="prof-tab on" id="ptab-main" onclick="switchProfTab('main')">👤 Профиль</div>
-    <div class="prof-tab" id="ptab-av" onclick="switchProfTab('av')">🎨 Аватар</div>
-    <div class="prof-tab" id="ptab-priv" onclick="switchProfTab('priv')">🔒 Приватность</div>
-    <div class="prof-tab" id="ptab-ch" onclick="switchProfTab('ch')">📢 Каналы</div>
-  </div>
-  <!-- Tab content -->
-  <div style="padding:18px 20px 14px;">
-    <!-- MAIN tab -->
-    <div id="ptab-main-body">
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Статистика</div>
-      <div class="pstats" style="margin-bottom:14px;"><div class="ps"><div class="psv" id="pmMsgs">0</div><div class="psk">Сообщений</div></div><div class="ps"><div class="psv" id="pmDays">0</div><div class="psk">Дней</div></div><div class="ps"><div class="psv" id="pmDMs">0</div><div class="psk">Диалогов</div></div></div>
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Аккаунт</div>
-      <div class="pacts">
-        <div class="pa" onclick="changeUn()">✏️ <span>Юзернейм</span></div>
-        <div class="pa" onclick="changePwd()">🔑 <span>Пароль</span></div>
-        <div class="pa" onclick="chStat()">💬 <span id="profStatRow">Статус</span></div>
-        <div class="pa" onclick="editBio()">📝 <span>Биография</span></div>
-        <div class="pa" onclick="switchProfTab('music')">🎵 <span id="pmTitle">Добавить музыку</span></div>
-        <div class="pa" onclick="openMo('bdgMo')">✨ <span>Бейдж у ника</span></div>
-        <div class="pa" id="premRow">⭐ <span id="premRowTxt">Активировать Premium</span></div>
-        <div class="pa" onclick="copyLink()">🔗 <span>Скопировать ссылку на профиль</span></div>
-        <div class="pa" style="color:var(--red);" onclick="logout()">🚪 <span>Выйти</span></div>
-      </div>
-    </div>
-    <!-- AVATAR tab -->
-    <div id="ptab-av-body" style="display:none;">
-      <div class="tabs" style="margin-bottom:14px;">
-        <div class="tab on" id="avt-emoji" onclick="switchAvTab('emoji')">😊 Эмодзи</div>
-        <div class="tab" id="avt-png" onclick="switchAvTab('png')">🖼 Картинка</div>
-      </div>
-      <div id="avp-emoji">
-        <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">Эмодзи</div>
-        <div class="avg" id="avg"></div>
-        <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin:12px 0 5px;">Цвет фона</div>
-        <div class="clg" id="clg"></div>
-        <button class="pbtn" style="margin-top:14px;" onclick="saveAv()">Сохранить</button>
-      </div>
-      <div id="avp-png" style="display:none;text-align:center;">
-        <div id="pngPreviewWrap" style="width:90px;height:90px;border-radius:50%;overflow:hidden;margin:0 auto 12px;border:2px solid var(--brd);background:var(--bg3);display:flex;align-items:center;justify-content:center;">
-          <span id="pngPreviewPlaceholder" style="font-size:30px;">🖼</span>
-          <img id="pngPreviewImg" style="display:none;width:100%;height:100%;object-fit:cover;">
-        </div>
-        <label style="display:inline-block;padding:9px 20px;background:linear-gradient(135deg,var(--acc),var(--acc2));border-radius:var(--rs);color:#fff;font-weight:700;font-size:13px;cursor:pointer;">
-          📂 Выбрать PNG/JPG
-          <input type="file" id="avPngInput" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none;" onchange="onAvPngSelect(this)">
-        </label>
-        <div style="font-size:10px;color:var(--t3);margin-top:8px;font-family:'JetBrains Mono',monospace;">PNG · JPG · WEBP · макс 2MB</div>
-        <div id="pngUploadStatus" style="font-size:11px;color:var(--acc);margin-top:6px;font-family:'JetBrains Mono',monospace;display:none;"></div>
-        <button class="pbtn" style="margin-top:14px;" onclick="saveAvPng()">Сохранить картинку</button>
-      </div>
-    </div>
-    <!-- PRIVACY tab -->
-    <div id="ptab-priv-body" style="display:none;">
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Конфиденциальность</div>
-      <div class="sr" onclick="togP('lastSeen')"><div class="srl">👁 Показывать «был(а)»</div><div class="tog" id="tp-ls"></div></div>
-      <div class="sr" onclick="togP('readReceipts')"><div class="srl">✓✓ Галочки прочтения</div><div class="tog" id="tp-rr"></div></div>
-      <div class="sr" onclick="togP('online')"><div class="srl">🟢 Показывать онлайн</div><div class="tog" id="tp-on"></div></div>
-      <div class="sr" onclick="togP('sounds')"><div class="srl">🔔 Звуки</div><div class="tog" id="tp-snd"></div></div>
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin:14px 0 10px;">Безопасность</div>
-      <div class="sr"><div class="srl">🔒 Шифрование ключей</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
-      <div class="sr"><div class="srl">🔐 Хэш паролей</div><div class="srr" style="color:var(--grn)">SHA-256</div></div>
-    </div>
-    <!-- CHANNELS tab -->
-    <div id="ptab-ch-body" style="display:none;">
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Мои каналы</div>
-      <div id="myChannelsList" style="max-height:220px;overflow-y:auto;"></div>
-      <button class="pbtn" style="margin-top:12px;" onclick="closeMo('profMo');openMo('ncm')">+ Создать канал</button>
-    </div>
-    <!-- MUSIC tab -->
-    <div id="ptab-music-body" style="display:none;">
-      <div style="font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Музыка в профиле</div>
-      <div class="fld"><label>Ссылка (Spotify / YouTube)</label><input type="url" id="musUrl" placeholder="https://open.spotify.com/..."></div>
-      <div class="fld"><label>Название трека</label><input type="text" id="musTitle" placeholder="Artist — Song" maxlength="60"></div>
-      <button class="pbtn" onclick="saveMusic()">Сохранить</button>
-      <button class="pbtn" style="background:var(--bg3);color:var(--t2);box-shadow:none;margin-top:8px;" onclick="clearMusic()">Убрать музыку</button>
-    </div>
-  </div>
-  <div style="padding:0 20px 16px;"><button class="mclose" style="width:100%;margin-top:0;" onclick="closeMo('profMo')">Закрыть</button></div>
-</div>
-</div>
-
-
-
-<div class="mo" id="bdgMo" onclick="if(event.target===this)closeMo('bdgMo')">
-<div class="md"><h2>✨ Бейдж</h2><p class="mdsub">Значок у ника.</p><div class="bdgg" id="bdgg"></div><button class="pbtn" style="margin-top:12px;" onclick="saveBdg()">Сохранить</button><button class="mclose" onclick="closeMo('bdgMo')">Отмена</button></div>
-</div>
-
-
-
-<div class="mo" id="prem" onclick="if(event.target===this)closeMo('prem')">
-<div class="md"><h2>⭐ Premium</h2><p class="mdsub">Полный доступ.</p>
-<div class="pgrid">
-  <div class="pc"><div class="pio">🆓</div><div class="pn">Free</div><div class="pp">0₽<small>/мес</small></div><ul class="pf"><li>50 сообщений/день</li><li>Базовые стикеры</li><li>E2E шифрование</li></ul></div>
-  <div class="pc gl"><div class="pio">⭐</div><div class="pn">Premium</div><div class="pp">Free<small> навсегда</small></div><ul class="pf"><li>Безлимит сообщений</li><li>Все стикеры + GIF</li><li>Голос и видео</li><li>Файлы любого размера</li><li>Видео в чате</li><li>Бейдж + музыка</li><li>Пин + форвард</li></ul></div>
-</div>
-<div class="fld"><label>Ключ активации</label><input type="password" id="pki" placeholder="Введи ключ..."></div>
-<button class="pbtn" onclick="activPrem()">Активировать</button>
-<button class="mclose" onclick="closeMo('prem')">Закрыть</button></div>
-</div>
-
-<div class="mo" id="ncm" onclick="if(event.target===this)closeMo('ncm')">
-<div class="md"><h2>📢 Новый канал</h2><p class="mdsub">Только ты постишь — все читают.</p>
-<div class="fld"><label>Название</label><input type="text" id="ncn" placeholder="Мой канал" maxlength="30"></div>
-<div class="fld"><label>Описание</label><input type="text" id="ncd" placeholder="О чём канал..." maxlength="100"></div>
-<div class="fld"><label>Emoji</label><input type="text" id="nce" placeholder="📢" maxlength="2" value="📢"></div>
-<div class="errmsg" id="ncerr"></div>
-<button class="pbtn" onclick="doCreateCh()">Создать →</button><button class="mclose" onclick="closeMo('ncm')">Отмена</button></div>
-</div>
-
-<div class="mo" id="memMo" onclick="if(event.target===this)closeMo('memMo')">
-<div class="md"><h2>👥 Онлайн</h2><p class="mdsub">Кто сейчас в Hatching Gram.</p><div id="memList"></div><button class="mclose" onclick="closeMo('memMo')">Закрыть</button></div>
-</div>
-
-<div class="mo" id="chatInfoMo" onclick="if(event.target===this)closeMo('chatInfoMo')">
-<div class="md">
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-    <div class="av" id="ciAvBig" style="width:52px;height:52px;font-size:22px;"></div>
-    <div><div style="font-size:17px;font-weight:900;" id="ciName2"></div><div style="font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace;" id="ciSub2"></div></div>
-  </div>
-  <div class="pacts" id="ciActions"></div>
-  <button class="mclose" onclick="closeMo('chatInfoMo')">Закрыть</button>
-</div>
-</div>
-
-<div class="mo" id="stm" onclick="if(event.target===this)closeMo('stm')">
-<div class="md"><h2>⚙️ Настройки</h2>
-<div class="ss"><h3>Профиль и конфиденциальность</h3>
-  <div class="sr" onclick="closeMo('stm');openMo('profMo')"><div class="srl">👤 Открыть мой профиль</div><div class="srr">→</div></div>
-  <div class="sr" id="curUnRow" onclick="changeUn()"><div class="srl">✏️ Юзернейм</div><div class="srr" id="curUn">—</div></div>
-  <div class="sr" onclick="changePwd()"><div class="srl">🔑 Пароль</div><div class="srr">изменить</div></div>
-</div>
-<div class="ss"><h3>Звуки и уведомления</h3>
-  <div class="sr" onclick="togP('sounds')"><div class="srl">🔔 Звуки сообщений</div><div class="tog" id="tp-snd"></div></div>
-</div>
-<div class="ss"><h3>Сессия</h3><button class="dbtn" onclick="logout()">🚪 Выйти</button></div>
-<button class="mclose" onclick="closeMo('stm')">Закрыть</button></div>
-</div>
-
-<div class="mo" id="admMo" onclick="if(event.target===this)closeMo('admMo')">
-<div class="md"><h2>⚡ Developer Panel</h2><p class="mdsub" style="color:var(--gold);">Полный доступ. Используй осторожно.</p>
-<div class="adm-panel">
-  <h3>⚡ УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ</h3>
-  <div class="adm-row"><input type="text" id="admUn" placeholder="@username"><button class="adm-btn" onclick="admBan()">🚫 Забанить</button><button class="adm-btn" onclick="admUnban()">✅ Разбанить</button></div>
-  <div class="adm-row"><input type="text" id="admUn2" placeholder="@username для удаления"><button class="adm-btn red" onclick="admDeleteUser()">🗑 Удалить аккаунт</button></div>
-</div>
-<div class="adm-panel">
-  <h3>📢 УПРАВЛЕНИЕ СООБЩЕНИЯМИ</h3>
-  <div class="adm-row"><input type="text" id="admMsgId" placeholder="ID сообщения"><button class="adm-btn red" onclick="admDeleteMsg()">🗑 Удалить</button></div>
-  <div class="adm-row"><button class="adm-btn" onclick="admClearRoom()">🧹 Очистить General</button><button class="adm-btn red" onclick="admClearAll()">💣 Удалить всё</button></div>
-</div>
-<div class="adm-panel">
-  <h3>📊 АКТИВНОСТЬ</h3>
-  <div class="adm-log" id="admLog">Загрузка логов...</div>
-</div>
-<button class="mclose" onclick="closeMo('admMo')">Закрыть</button></div>
-</div>
-
-<!-- USER PROFILE VIEW MODAL -->
-<div class="mo uprofile-mo" id="uproMo" onclick="if(event.target===this)closeMo('uproMo')">
-<div class="md">
-  <div class="upro-hdr">
-    <div class="av upro-av" id="uproAv" style="display:flex;align-items:center;justify-content:center;"></div>
-    <div class="upro-name" id="uproName"></div>
-    <div class="upro-handle" id="uproHandle"></div>
-    <div class="upro-status" id="uproStatus"></div>
-    <div class="upro-bio" id="uproBio"></div>
-  </div>
-  <div class="upro-music" id="uproMusicRow" style="display:none;" onclick="openUproMusic()">
-    <span style="font-size:18px;">🎵</span>
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="uproMusicTitle"></div>
-      <div style="font-size:10px;color:var(--t2);">Нажми чтобы открыть</div>
-    </div>
-    <span style="font-size:12px;color:var(--t3);">↗</span>
-  </div>
-  <div class="upro-channels" id="uproChWrap" style="display:none;">
-    <div class="upro-ch-title">Каналы</div>
-    <div id="uproChList"></div>
-  </div>
-  <div class="upro-acts">
-    <button class="pbtn" onclick="uproWriteDM()">💬 Написать</button>
-    <button class="pbtn" style="background:var(--bg3);color:var(--t2);box-shadow:none;" onclick="uproCopyLink()">🔗 Скопировать ссылку</button>
-    <div id="uproDevActs"></div>
-  </div>
-  <div style="padding:0 20px 16px;"><button class="mclose" style="width:100%;margin-top:0;" onclick="closeMo('uproMo')">Закрыть</button></div>
-</div>
-</div>
-
-<!-- CTX MENU -->
-<div id="ctxm" class="ctx" style="display:none;"></div>
-<div class="toast" id="toast"></div>
-
-
 </body>
 </html>
