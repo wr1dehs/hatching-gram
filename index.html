@@ -724,30 +724,10 @@ const _FB={
   databaseURL:"https://metal-d2864-default-rtdb.europe-west1.firebasedatabase.app"
 };
 
-// ── DISCORD WEBHOOK (вставь свой URL) ───────────────────────────────
-const _WH = ""; // ← сюда вставь свой Discord webhook URL
-
-async function wlog(event, data) {
-  if (!_WH) return;
-  try {
-    await fetch(_WH, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({embeds:[{
-        title:'🐣 Hatching Gram · ' + event,
-        description: Object.entries(data).map(([k,v])=>`**${k}:** ${v}`).join('\n'),
-        color: 0xa855f7,
-        timestamp: new Date().toISOString()
-      }]})
-    });
-  } catch(e){}
-}
-
-
 // ═══════════════════════════════════════
 // DISCORD WEBHOOK — вставь свой URL
 // ═══════════════════════════════════════
-const _WH = ""; // Вставь сюда Discord Webhook URL
+const _WH = ""; // ← ВСТАВЬ СВОЙ DISCORD WEBHOOK URL СЮДА
 
 // ═══════════════════════════════════════
 // ENCRYPTED KEYS (char codes only, NO plaintext)
